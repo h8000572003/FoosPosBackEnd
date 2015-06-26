@@ -24,11 +24,14 @@ public class MealPo {
 	@Column(name = "spcialize")
 	private String spcialize;
 
-	@Column(name = "dolloar")
-	private String dolloar;
+	@Column(name = "dollar")
+	private String dollar;
 
 	@Column(name = "number")
 	private String number;
+	
+	@Column(name = "useNumber")
+	private String useNumber;
 
 	public String getId() {
 		return id;
@@ -62,12 +65,14 @@ public class MealPo {
 		this.spcialize = spcialize;
 	}
 
-	public String getDolloar() {
-		return dolloar;
+	
+
+	public String getDollar() {
+		return dollar;
 	}
 
-	public void setDolloar(String dolloar) {
-		this.dolloar = dolloar;
+	public void setDollar(String dollar) {
+		this.dollar = dollar;
 	}
 
 	public String getNumber() {
@@ -76,6 +81,14 @@ public class MealPo {
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public String getUseNumber() {
+		return useNumber;
+	}
+
+	public void setUseNumber(String useNumber) {
+		this.useNumber = useNumber;
 	}
 
 }

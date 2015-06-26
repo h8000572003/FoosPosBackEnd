@@ -69,6 +69,26 @@ public class BillController {
 		return status;
 	}
 
+	/**
+	 * 查詢尚未進行清單
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/query/unBuy/today/isSpeak", method = RequestMethod.GET)
+	public @ResponseBody Status queryAndIsSpeakOut() {
+
+		Status status = new Status();
+		try {
+			status.setContent(this.billCompent
+					.findTodayUnBuyAndIsSpeakOut(AeUtils.getNowTime()));
+			status.successful();
+		} catch (Exception e) {
+			LOG.error("e:{}", e);
+			status.fail(e);
+		}
+		return status;
+	}
+
 	/*
 	 * 更新是否叫餐狀況
 	 */
