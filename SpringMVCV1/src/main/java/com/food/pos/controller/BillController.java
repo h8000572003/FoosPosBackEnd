@@ -49,6 +49,20 @@ public class BillController {
 		return status;
 	}
 
+	@RequestMapping(value = "/query/all/today", method = RequestMethod.GET)
+	public @ResponseBody Status queryTodayAll() {
+
+		Status status = new Status();
+		try {
+			status.setContent(this.billCompent.findAll(AeUtils.getNowTime()));
+			status.successful();
+		} catch (Exception e) {
+			LOG.error("e:{}", e);
+			status.fail(e);
+		}
+		return status;
+	}
+
 	/**
 	 * 查詢尚未進行清單
 	 * 

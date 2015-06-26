@@ -59,6 +59,7 @@ public class BillCompentImpl implements BillCompent {
 
 		return bills;
 	}
+
 	@Override
 	public List<Bill> findTodayUnBuyAndIsSpeakOut(String date) {
 		final List<Bill> bills = new ArrayList<Bill>();
@@ -76,6 +77,22 @@ public class BillCompentImpl implements BillCompent {
 		return bills;
 	}
 
+	@Override
+	public List<Bill> findAll(String date) {
+		final List<Bill> bills = new ArrayList<Bill>();
+		List<BillPo> BillPos = billDAO.findToday(date);
+
+		for (BillPo po : BillPos) {
+			List<MealPo> meals = mealPoDAO.findMealsByBillId(po.getTxId());
+
+			final Bill bill = new Bill();
+			bill.setBill(po);
+			bill.setMeals(meals);
+			bills.add(bill);
+		}
+
+		return bills;
+	}
 
 	@Override
 	@Transactional
@@ -157,6 +174,5 @@ public class BillCompentImpl implements BillCompent {
 		}
 
 	}
-
 
 }

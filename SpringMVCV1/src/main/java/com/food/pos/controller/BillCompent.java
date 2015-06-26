@@ -16,6 +16,8 @@ public interface BillCompent {
 	public List<Bill> findTodayUnBuyAndNoSpeakOut(String date);
 
 	public List<Bill> findTodayUnBuyAndIsSpeakOut(String date);
+	
+	public List<Bill> findAll(String date);
 
 	void updateIsSpeakOut(String txId, String value);
 
