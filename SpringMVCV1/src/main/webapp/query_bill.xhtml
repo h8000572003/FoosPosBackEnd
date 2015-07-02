@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+	<ui:define name="content">
+		<div>
+
+
+			<b:panel title="查詢帳單">
+
+				<b:panelGrid colSpans="2,10">
+					<p:outputLabel for="inline" value="日期:" />
+					<p:calendar id="inline" value="#{billBean.dto.yyyymmdd}" mode="inline"
+						pattern="yyyyMMdd" />
+
+
+
+
+				</b:panelGrid>
+
+				<p:dataTable var="item" value="#{billBean.dto.bills}">
+					<p:column headerText="Id">
+						<h:outputText value="#{item.bill.txId}" />
+					</p:column>
+
+					
+				</p:dataTable>
+
+
+				
+					
+					
+				<h:commandButton value="query"
+					action="#{billBean.doQuery}"></h:commandButton>
+			</b:panel>
+
+
+		</div>
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

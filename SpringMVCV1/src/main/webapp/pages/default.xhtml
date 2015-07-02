@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>BootsFaces Basic Page</title>
+</h:head>
+<h:body>
+	<b:container>
+		<p:growl id="msgs" showDetail="true" />
+		<ui:include src="/pages/menu.xhtml"></ui:include>
+
+		<div id="content">
+			<ui:insert name="content">
+			</ui:insert>
+			<div id="ERROR">
+				<h:messages errorStyle="color:red" infoStyle="color:blue"></h:messages>
+			</div>
+		</div>
+
+	</b:container>
+</h:body>
+</html>
