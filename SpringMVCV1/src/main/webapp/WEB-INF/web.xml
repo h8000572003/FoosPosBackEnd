@@ -5,6 +5,13 @@
 
 	<display-name>Spring Web MVC Application</display-name>
 
+	<!-- Change to "Production" when you are ready to deploy -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+
 	<servlet>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -24,6 +31,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
 
 	<context-param>
 		<param-name>BootsFaces_USETHEME</param-name>
@@ -50,10 +62,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-
-		<welcome-file>index.xhtml</welcome-file>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>faces/index.xhtml</welcome-file>
 	</welcome-file-list>
 
 </web-app>

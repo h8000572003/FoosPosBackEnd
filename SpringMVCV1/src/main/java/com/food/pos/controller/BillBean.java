@@ -14,14 +14,14 @@ import com.food.pos.contract.AeUtils;
 import com.food.pos.dto.BillBeanDTO;
 import com.food.pos.service.BillService;
 
-@ManagedBean
+@ManagedBean(name = "billBean", eager = false)
 @RequestScoped
 public class BillBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private BillBeanDTO dto;
+	private BillBeanDTO dto=new BillBeanDTO();
 
 	private static Logger LOG = LoggerFactory.getLogger(BillBean.class);
 
@@ -45,7 +45,7 @@ public class BillBean implements Serializable {
 	public String doQuery() {
 		service.query(dto);
 		return null;
-		
+
 	}
 
 	public BillService getService() {
@@ -55,6 +55,5 @@ public class BillBean implements Serializable {
 	public void setService(BillService service) {
 		this.service = service;
 	}
-	
-	
+
 }

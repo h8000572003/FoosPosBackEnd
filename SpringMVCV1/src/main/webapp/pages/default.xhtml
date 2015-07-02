@@ -11,15 +11,14 @@
 </h:head>
 <h:body>
 	<b:container>
-		<p:growl id="msgs" showDetail="true" />
-		<ui:include src="/pages/menu.xhtml"></ui:include>
 
+		<ui:include src="/pages/menu.xhtml"></ui:include>
+		<p:growl id="msgs" showDetail="true" />
 		<div id="content">
+
 			<ui:insert name="content">
 			</ui:insert>
-			<div id="ERROR">
-				<h:messages errorStyle="color:red" infoStyle="color:blue"></h:messages>
-			</div>
+
 		</div>
 
 	</b:container>

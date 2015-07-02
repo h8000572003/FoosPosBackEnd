@@ -10,39 +10,25 @@
 <ui:composition template="pages/default.xhtml">
 
 	<ui:define name="content">
-		<div>
-
-
-			<b:panel title="查詢帳單">
-
-				<b:panelGrid colSpans="2,10">
-					<p:outputLabel for="inline" value="日期:" />
-					<p:calendar id="inline" value="#{billBean.dto.yyyymmdd}" mode="inline"
-						pattern="yyyyMMdd" />
+		<h:form>
 
 
 
 
-				</b:panelGrid>
+			<b:panel title="xxx">
 
-				<p:dataTable var="item" value="#{billBean.dto.bills}">
-					<p:column headerText="Id">
-						<h:outputText value="#{item.bill.txId}" />
-					</p:column>
-
-					
-				</p:dataTable>
+			
 
 
-				
-					
-					
-				<h:commandButton value="query"
-					action="#{billBean.doQuery}"></h:commandButton>
+
+
+
 			</b:panel>
 
 
-		</div>
+
+			<h:commandButton  value="query" actionListener="#{billBean.doQuery}"></h:commandButton>
+		</h:form>
 	</ui:define>
 
 
