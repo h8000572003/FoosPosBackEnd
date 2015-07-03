@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 
 
 
-<b:navBar inverse="true" brand="POS機" brandHref="/SpringMVC/faces/index.xhtml" static="true" fixed="true">
+<b:navBar inverse="true" brand="POS機"
+	brandHref="/SpringMVC/faces/index.xhtml" fixed="true">
 	<b:navbarLinks>
 		<b:navLink value="Home" href="/faces/index.xhtml"></b:navLink>
-		<b:navLink value="餐點" href="/faces/query_bill.xhtml"></b:navLink>
+		
+		<b:dropMenu value="公告">
+			<b:navLink value="新增公告" href="/faces/pos_message.xhtml"></b:navLink>
+			<b:navLink value="通知使用者" href="/faces/pos_message_for_phone.xhtml"></b:navLink>
+		</b:dropMenu>
+
+		<b:navLink value="查詢歷史菜單" href="/faces/query_bill.xhtml"></b:navLink>
+
+
+
 		<b:navLink value="" href="#"></b:navLink>
 		<b:dropMenu value="查詢">
 			<b:navLink value="查詢帳單" href="/faces/query_bill.xhtml"></b:navLink>
-			<b:navLink value="帳單月報" href="#"></b:navLink>
-			<b:navLink value="帳單月報" href="#"></b:navLink>
+			<b:navLink value="報表" href="/faces/query_bill_report.xhtml"></b:navLink>
+
 			<b:navLink></b:navLink>
 			<b:navLink header="月出菜量"></b:navLink>
-			
+
 		</b:dropMenu>
 		<b:dropMenu value="設定">
 			<b:navLink value="餐點" href="/faces/setting_food.xhtml"></b:navLink>
 			<b:navLink header="客製化"></b:navLink>
 			<b:navLink value="座位" href="#"></b:navLink>
-			<b:navLink value="特徵" href="#"></b:navLink>			
-			
-			
+			<b:navLink value="特徵" href="#"></b:navLink>
+
+
 		</b:dropMenu>
 	</b:navbarLinks>
 </b:navBar>

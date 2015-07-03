@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+
+
+
+
+			<b:panel title="新增訊息">
+				<b:well>
+					<h3>輸入最新公告</h3>
+					輸入完成後將會顯示於首頁
+					<p:inputTextarea style="width:100%"></p:inputTextarea>
+					<b:commandButton value="新增"></b:commandButton>
+					<b:commandButton value="發送至手機"></b:commandButton>
+				</b:well>
+
+
+
+			</b:panel>
+
+
+
+
+
+		</h:form>
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

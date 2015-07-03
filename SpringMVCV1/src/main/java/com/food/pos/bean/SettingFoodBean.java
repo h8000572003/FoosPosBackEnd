@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.food.pos.dto.SettingFoodDTO;
 import com.food.pos.dto.SettingFoodItem;
 import com.food.pos.service.SettingFoodService;
@@ -24,6 +26,8 @@ public class SettingFoodBean implements Serializable {
 
 	@ManagedProperty(value = "#{settingFoodService}")
 	private transient SettingFoodService service;
+
+	private boolean isValidity = false;
 
 	@PostConstruct
 	public void init() {
@@ -46,18 +50,34 @@ public class SettingFoodBean implements Serializable {
 	public void setService(SettingFoodService service) {
 		this.service = service;
 	}
-	public String doQuery(){
+
+	public String doQuery() {
 		this.service.findAllFoods(dto);
+		return "";
+	}
+
+	public String validity() {
+		this.isValidity = false;
+		for (SettingFoodItem food : dto.getItems()) {
+
+			if (StringUtils.isNotBlank(food.getName())
+					&& StringUtils.isBlank(food.getDollar())) {
+				FacesMessage facesMsg = new FacesMessage(
+						FacesMessage.SEVERITY_WARN, "金額需填寫", null);
+				FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			}
+		}
+		this.isValidity = true;
 		return "";
 	}
 
 	public String updateFoods() {
 		this.service.saveFoods(dto);
-		
+
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"新增成功", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-		
+
 		return "";
 	}
 
@@ -67,4 +87,14 @@ public class SettingFoodBean implements Serializable {
 		}
 		return "";
 	}
+
+	public boolean isValidity() {
+		return isValidity;
+	}
+
+	public void setValidity(boolean isValidity) {
+		this.isValidity = isValidity;
+	}
+	
+	
 }

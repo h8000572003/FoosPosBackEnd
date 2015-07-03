@@ -19,7 +19,11 @@
 						<h:inputText value="#{item.name}" />
 					</p:column>
 					<p:column headerText="金額">
-						<h:inputText value="#{item.dollar}" />
+						<b:inputText value="#{item.dollar}">
+							<f:facet name="prepend">
+								<h:outputText value="$" />
+							</f:facet>
+						</b:inputText>
 					</p:column>
 				</p:dataTable>
 			</b:panel>
@@ -27,9 +31,12 @@
 
 
 
-			<b:commandButton value="增加更多欄位" action="#{settingFoodBean.addTenColumns}"
-				></b:commandButton>
-			<b:commandButton value="更新" action="#{settingFoodBean.updateFoods}"></b:commandButton>
+			<b:commandButton value="增加更多欄位"
+				action="#{settingFoodBean.addTenColumns}"></b:commandButton>
+
+			<b:commandButton value="驗證" action="#{settingFoodBean.validity}"></b:commandButton>
+			<b:commandButton value="更新" rendered="#{settingFoodBean.validity}"
+				action="#{settingFoodBean.updateFoods}"></b:commandButton>
 		</h:form>
 	</ui:define>
 

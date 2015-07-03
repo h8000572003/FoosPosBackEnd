@@ -15,19 +15,20 @@
 
 
 
-			<b:panel title="查詢帳單">
+			<b:panel title="查詢歷史菜單">
 
 				<table>
 					<tr>
 
-						<th><p:outputLabel value="查詢日期:  " /></th>
+						<th><p:outputLabel value="查詢年:  " /></th>
 						<td>	<p:calendar id="mask" value="#{billBean.dto.queryDate}"
 						pattern="yyyy-MM-dd" mask="true">
 
 					</p:calendar></td>
 					</tr>
-
 				</table>
+				
+				<br></br>
 
 			
 
@@ -79,6 +80,8 @@
 
 
 			<b:commandButton value="查詢" action="#{billBean.doQuery}"></b:commandButton>
+			
+			 <b:button look="primary" icon="print" value="" />
 		</h:form>
 	</ui:define>
 

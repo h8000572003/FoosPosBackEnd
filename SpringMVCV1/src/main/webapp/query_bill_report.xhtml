@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+
+
+
+
+			<b:panel title="建立報表">
+
+
+				<p:panelGrid columns="2" >
+					<p:outputLabel value="查詢日期:  " />
+					<b:inputText value="#{QueryBillReportBean.dto.yyyy}">
+						<f:facet name="prepend">
+							<h:outputText value="年" />
+						</f:facet>
+					</b:inputText>
+
+
+
+					<p:outputLabel value="查詢月:  " />
+
+					<p:selectOneMenu id="console"
+						value="#{QueryBillReportBean.dto.month}">
+						<f:selectItem itemLabel="整年" itemValue="" />
+						<f:selectItem itemLabel="1月" itemValue="01" />
+						<f:selectItem itemLabel="2月" itemValue="02" />
+						<f:selectItem itemLabel="3月" itemValue="03" />
+						<f:selectItem itemLabel="4月" itemValue="04" />
+						<f:selectItem itemLabel="5月" itemValue="05" />
+						<f:selectItem itemLabel="6月" itemValue="06" />
+						<f:selectItem itemLabel="7月" itemValue="07" />
+						<f:selectItem itemLabel="8月" itemValue="08" />
+						<f:selectItem itemLabel="9月" itemValue="09" />
+						<f:selectItem itemLabel="10月" itemValue="10" />
+						<f:selectItem itemLabel="11月" itemValue="11" />
+						<f:selectItem itemLabel="12月" itemValue="12" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+				<br></br>
+
+
+
+
+				<b:commandButton value="下載報表" action="#{billBean.doQuery}"></b:commandButton>
+
+
+
+			</b:panel>
+
+
+
+		</h:form>
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>
