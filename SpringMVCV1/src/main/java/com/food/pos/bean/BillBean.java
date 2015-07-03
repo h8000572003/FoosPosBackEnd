@@ -32,7 +32,7 @@ public class BillBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.dto = new BillBeanDTO();
-		this.dto.setYyyymmdd(AeUtils.getNowTime());
+		this.dto.setYyyymmdd(AeUtils.getNowDate());
 	}
 
 	public BillBeanDTO getDto() {

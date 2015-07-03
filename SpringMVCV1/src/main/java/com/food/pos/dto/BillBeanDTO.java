@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javafx.scene.chart.PieChart.Data;
-
 import com.food.pos.json.Bill;
 
 public class BillBeanDTO implements Serializable {

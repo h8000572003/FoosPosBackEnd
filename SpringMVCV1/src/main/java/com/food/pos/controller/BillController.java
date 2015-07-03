@@ -54,7 +54,7 @@ public class BillController {
 
 		Status status = new Status();
 		try {
-			status.setContent(this.billCompent.findAll(AeUtils.getNowTime()));
+			status.setContent(this.billCompent.findAll(AeUtils.getNowDate()));
 			status.successful();
 		} catch (Exception e) {
 			LOG.error("e:{}", e);
@@ -74,7 +74,7 @@ public class BillController {
 		Status status = new Status();
 		try {
 			status.setContent(this.billCompent
-					.findTodayUnBuyAndNoSpeakOut(AeUtils.getNowTime()));
+					.findTodayUnBuyAndNoSpeakOut(AeUtils.getNowDate()));
 			status.successful();
 		} catch (Exception e) {
 			LOG.error("e:{}", e);
@@ -94,7 +94,7 @@ public class BillController {
 		Status status = new Status();
 		try {
 			status.setContent(this.billCompent
-					.findTodayUnBuyAndIsSpeakOut(AeUtils.getNowTime()));
+					.findTodayUnBuyAndIsSpeakOut(AeUtils.getNowDate()));
 			status.successful();
 		} catch (Exception e) {
 			LOG.error("e:{}", e);

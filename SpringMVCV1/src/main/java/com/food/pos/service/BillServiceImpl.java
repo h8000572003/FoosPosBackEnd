@@ -21,7 +21,7 @@ public class BillServiceImpl implements BillService {
 	@Override
 	public void query(BillBeanDTO dto) {
 
-		dto.setYyyymmdd(AeUtils.getNowTime(dto.getQueryDate()));
+		dto.setYyyymmdd(AeUtils.getDate(dto.getQueryDate()));
 
 		dto.getBills().clear();
 		dto.getBills().addAll(billCompent.findAll(dto.getYyyymmdd()));

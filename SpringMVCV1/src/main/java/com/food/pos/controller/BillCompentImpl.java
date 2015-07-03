@@ -29,7 +29,7 @@ public class BillCompentImpl implements BillCompent {
 	public List<Bill> getTodayUnBuyBill() {
 
 		final List<Bill> bills = new ArrayList<Bill>();
-		List<BillPo> BillPos = billDAO.findTodayUnBuy(AeUtils.getNowTime());
+		List<BillPo> BillPos = billDAO.findTodayUnBuy(AeUtils.getNowDate());
 
 		for (BillPo po : BillPos) {
 			List<MealPo> meals = mealPoDAO.findMealsByBillId(po.getTxId());
@@ -119,7 +119,7 @@ public class BillCompentImpl implements BillCompent {
 	@Override
 	@Transactional
 	public void deleteTotal() {
-		final List<BillPo> bills = billDAO.findToday(AeUtils.getNowTime());
+		final List<BillPo> bills = billDAO.findToday(AeUtils.getNowDate());
 		for (BillPo po : bills) {
 			List<MealPo> meals = mealPoDAO.findMealsByBillId(po.getTxId());
 			billDAO.delete(po);

@@ -15,24 +15,66 @@
 
 
 
-			<b:panel title="新增訊息">
-				<b:well>
-					<h3>輸入最新公告</h3>
+			<h3>新增訊息</h3>
+			<b:well>
+				<h3>輸入最新公告</h3>
 					輸入完成後將會顯示於首頁
-					<p:inputTextarea style="width:100%"></p:inputTextarea>
-					<b:commandButton value="新增"></b:commandButton>
-					<b:commandButton value="發送至手機"></b:commandButton>
-				</b:well>
+					<p:inputTextarea
+					value="#{posMessageBean.dto.addPostMessage.message}"
+					style="width:100%"></p:inputTextarea>
+
+
+				<b:commandButton value="新增" rendered="#{!posMessageBean.modify}"
+					action="#{posMessageBean.insertNewMessageWhen2Query}"></b:commandButton>
+
+
+				<b:commandButton value="修改" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.modify2Query}"></b:commandButton>
+
+				<b:commandButton value="取消" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.cancel}"></b:commandButton>
+			</b:well>
 
 
 
-			</b:panel>
 
+			<p:dataTable var="item"
+				value="#{posMessageBean.dto.posMessageResultDTOs}" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowKey="#{item}" style="margin-bottom:0">
+
+
+
+
+
+				<p:column headerText="公告" >
+					<h:outputText value="#{item.message}#{item.createDate}#{item.createTime}" />
+				</p:column>
+
+				<p:column style="text-align: center" headerText="檢視">
+					<p:commandButton action="#{posMessageBean.beginModify}" update="@form" icon="ui-icon-search" title="View">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{posMessageBean.dto.addPostMessage}" />
+					</p:commandButton>
+
+				</p:column>
+				
+				<p:column style="text-align: center" headerText="刪除">
+					<p:commandButton update="@form" action="#{posMessageBean.delete2Query(item)}"  value="刪除" title="View">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{posMessageBean.dto.addPostMessage}" />
+					</p:commandButton>
+
+				</p:column>
+
+			</p:dataTable>
 
 
 
 
 		</h:form>
+
+
 	</ui:define>
 
 
