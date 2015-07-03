@@ -13,35 +13,47 @@
 		<h:form id="form">
 
 
+			<h3>通知使用者</h3>
 
 
-			<b:panel title="新增訊息">
-				<b:well>
-					<h3>輸入最新公告</h3>
-					輸入完成後將會顯示於首頁
-					<p:inputTextarea value="#{posMessageForPhoneBean.dto.message}"
-						style="width:100%"></p:inputTextarea>
+			<b:well>
+				<h1>
+					<strong>發送訊息</strong>
+				</h1>
+				<strong>發送於用戶手機，請先至少<font color="red">勾選一位用戶</font></strong>
 
 
-				</b:well>
-
+				
 				<p:dataTable var="item" value="#{posMessageForPhoneBean.dto.items}"
-					selection="#{posMessageForPhoneBean.dto.selectItems}" rowKey="#{item}"
-					style="margin-bottom:0">
-					<f:facet name="header">勾選 </f:facet>
+					selection="#{posMessageForPhoneBean.dto.selectItems}"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowKey="#{item}" style="margin-bottom:0">
+
 
 
 					<p:column selectionMode="multiple"
 						style="width:5%;text-align:center" />
-					
-					<p:column headerText="deviceId">
+
+					<p:column headerText="名稱">
 						<h:outputText value="#{item.user}" />
 					</p:column>
 
 				</p:dataTable>
-				<b:commandButton value="發送"
+
+				<br></br>
+訊息欄位
+				<p:inputTextarea value="#{posMessageForPhoneBean.dto.message}"
+					style="width:100%"></p:inputTextarea>
+
+
+				<b:commandButton value="發送" look="primary"
 					action="#{posMessageForPhoneBean.posMessage}"></b:commandButton>
-			</b:panel>
+			</b:well>
+
+
+
+
 
 
 
