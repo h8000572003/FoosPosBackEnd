@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+
+
+
+
+			<b:buttonToolbar>
+
+				<b:buttonGroup>
+					<b:commandButton value="增加更多欄位"
+						action="#{settingFoodBean.addTenColumns}"></b:commandButton>
+
+					<b:commandButton value="查詢現有餐點"
+						action="#{settingFoodBean.doQuery}"></b:commandButton>
+				</b:buttonGroup>
+
+			</b:buttonToolbar>
+
+
+			<b:panel title="設定餐點">
+
+
+
+				<p:dataTable var="item" value="#{settingFoodBean.dto.items}">
+
+					<p:column headerText="名稱">
+						<h:inputText value="#{item.name}" />
+					</p:column>
+
+					<p:column headerText="金額">
+						<h:inputText value="#{item.dollar}" />
+					</p:column>
+
+
+
+
+				</p:dataTable>
+
+
+
+
+
+			</b:panel>
+
+
+
+
+
+			<b:commandButton value="更新" action="#{settingFoodBean.updateFoods}"></b:commandButton>
+		</h:form>
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

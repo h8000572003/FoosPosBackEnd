@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.food.pos.contract.AeUtils;
 import com.food.pos.controller.BillCompent;
 import com.food.pos.dto.BillBeanDTO;
 
@@ -19,7 +20,9 @@ public class BillServiceImpl implements BillService {
 
 	@Override
 	public void query(BillBeanDTO dto) {
-		
+
+		dto.setYyyymmdd(AeUtils.getNowTime(dto.getQueryDate()));
+
 		dto.getBills().clear();
 		dto.getBills().addAll(billCompent.findAll(dto.getYyyymmdd()));
 		LOG.info(ToStringBuilder.reflectionToString(dto.getBills()));

@@ -7,4 +7,7 @@ public class AeUtils {
 	public static String getNowTime() {
 		return new SimpleDateFormat("yyyyMMdd").format(new Date());
 	}
+	public static String getNowTime(Date date) {
+		return new SimpleDateFormat("yyyyMMdd").format(date);
+	}
 }

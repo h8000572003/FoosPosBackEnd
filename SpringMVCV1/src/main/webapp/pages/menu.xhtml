@@ -7,19 +7,26 @@
 
 
 
-<b:navBar inverse="true" brand="POS機" brandHref="#">
+<b:navBar inverse="true" brand="POS機" brandHref="/SpringMVC/faces/index.xhtml" static="true" fixed="true">
 	<b:navbarLinks>
 		<b:navLink value="Home" href="/faces/index.xhtml"></b:navLink>
-		<b:navLink value="Link" href="#"></b:navLink>
-		<b:navLink value="Link" href="#"></b:navLink>
+		<b:navLink value="餐點" href="/faces/query_bill.xhtml"></b:navLink>
+		<b:navLink value="" href="#"></b:navLink>
 		<b:dropMenu value="查詢">
 			<b:navLink value="查詢帳單" href="/faces/query_bill.xhtml"></b:navLink>
-			<b:navLink value="Another action" href="#"></b:navLink>
-			<b:navLink value="Something else here" href="#"></b:navLink>
+			<b:navLink value="帳單月報" href="#"></b:navLink>
+			<b:navLink value="帳單月報" href="#"></b:navLink>
 			<b:navLink></b:navLink>
-			<b:navLink header="Nav header"></b:navLink>
-			<b:navLink value="Separated link" href="#"></b:navLink>
-			<b:navLink value="One more separated link" href="#"></b:navLink>
+			<b:navLink header="月出菜量"></b:navLink>
+			
+		</b:dropMenu>
+		<b:dropMenu value="設定">
+			<b:navLink value="餐點" href="/faces/setting_food.xhtml"></b:navLink>
+			<b:navLink header="客製化"></b:navLink>
+			<b:navLink value="座位" href="#"></b:navLink>
+			<b:navLink value="特徵" href="#"></b:navLink>			
+			
+			
 		</b:dropMenu>
 	</b:navbarLinks>
 </b:navBar>

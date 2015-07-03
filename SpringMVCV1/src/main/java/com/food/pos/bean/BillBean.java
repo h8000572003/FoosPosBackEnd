@@ -1,4 +1,4 @@
-package com.food.pos.controller;
+package com.food.pos.bean;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +16,13 @@ import com.food.pos.dto.BillBeanDTO;
 import com.food.pos.service.BillService;
 
 @ManagedBean(name = "billBean", eager = false)
-@RequestScoped
+@ViewScoped
 public class BillBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private BillBeanDTO dto=new BillBeanDTO();
+	private BillBeanDTO dto = new BillBeanDTO();
 
 	private static Logger LOG = LoggerFactory.getLogger(BillBean.class);
 
@@ -43,7 +44,9 @@ public class BillBean implements Serializable {
 	}
 
 	public String doQuery() {
+
 		service.query(dto);
+		LOG.info("doQuery end..");
 		return null;
 
 	}

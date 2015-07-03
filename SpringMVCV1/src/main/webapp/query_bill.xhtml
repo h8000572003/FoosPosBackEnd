@@ -10,16 +10,67 @@
 <ui:composition template="pages/default.xhtml">
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form">
 
 
 
 
-			<b:panel title="xxx">
+			<b:panel title="查詢帳單">
+
+				<table>
+					<tr>
+
+						<th><p:outputLabel value="查詢日期:  " /></th>
+						<td>	<p:calendar id="mask" value="#{billBean.dto.queryDate}"
+						pattern="yyyy-MM-dd" mask="true">
+
+					</p:calendar></td>
+					</tr>
+
+				</table>
 
 			
 
+				<p:dataTable var="item" value="#{billBean.dto.bills}">
 
+
+					<p:column headerText="訂單時間">
+						<h:outputText value="#{item.bill.orderTime}" />
+					</p:column>
+
+					<p:column headerText="收費金額">
+						<h:outputText value="#{item.bill.dollar}" />
+					</p:column>
+
+
+					<p:column style="text-align: center" headerText="檢視">
+						<p:commandButton update="@form"
+							oncomplete="PF('billDialog').show()" icon="ui-icon-search"
+							title="View">
+							<f:setPropertyActionListener value="#{item}"
+								target="#{billBean.dto.selectBill}" />
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+
+
+				<p:dialog header="商品明細" widgetVar="billDialog" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="detial" style="text-align:center;">
+						<p:dataTable var="item" value="#{billBean.dto.selectBill.meals}">
+							<p:column headerText="名稱">
+								<h:outputText value="#{item.name}" />
+							</p:column>
+
+							<p:column headerText="數量">
+								<h:outputText value="#{item.number}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:dialog>
 
 
 
@@ -27,7 +78,7 @@
 
 
 
-			<h:commandButton  value="query" actionListener="#{billBean.doQuery}"></h:commandButton>
+			<b:commandButton value="查詢" action="#{billBean.doQuery}"></b:commandButton>
 		</h:form>
 	</ui:define>
 
