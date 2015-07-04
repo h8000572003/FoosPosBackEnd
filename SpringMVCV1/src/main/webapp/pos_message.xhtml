@@ -9,15 +9,19 @@
 
 <ui:composition template="pages/default.xhtml">
 
+
 	<ui:define name="content">
+		
+
 		<h:form id="form">
 
 
 
 
-			<h3>新增訊息</h3>
+
+			<h4>新增訊息</h4>
 			<b:well>
-				<h3>輸入最新公告</h3>
+				<h3><strong>輸入最新公告</strong></h3>
 					輸入完成後將會顯示於首頁
 					<p:inputTextarea
 					value="#{posMessageBean.dto.addPostMessage.message}"
@@ -30,6 +34,9 @@
 
 				<b:commandButton value="修改" rendered="#{posMessageBean.modify}"
 					action="#{posMessageBean.modify2Query}"></b:commandButton>
+
+				<b:commandButton value="刪除" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.delete2Query}"></b:commandButton>
 
 				<b:commandButton value="取消" rendered="#{posMessageBean.modify}"
 					action="#{posMessageBean.cancel}"></b:commandButton>
@@ -47,25 +54,20 @@
 
 
 
-				<p:column headerText="公告" >
-					<h:outputText value="#{item.message}#{item.createDate}#{item.createTime}" />
+				<p:column headerText="公告">
+					<h:outputText value="#{item.message}" />
 				</p:column>
 
 				<p:column style="text-align: center" headerText="檢視">
-					<p:commandButton action="#{posMessageBean.beginModify}" update="@form" icon="ui-icon-search" title="View">
+					<p:commandButton action="#{posMessageBean.beginModify}"
+						update="@form" icon="ui-icon-search" title="View">
 						<f:setPropertyActionListener value="#{item}"
 							target="#{posMessageBean.dto.addPostMessage}" />
 					</p:commandButton>
 
 				</p:column>
-				
-				<p:column style="text-align: center" headerText="刪除">
-					<p:commandButton update="@form" action="#{posMessageBean.delete2Query(item)}"  value="刪除" title="View">
-						<f:setPropertyActionListener value="#{item}"
-							target="#{posMessageBean.dto.addPostMessage}" />
-					</p:commandButton>
 
-				</p:column>
+
 
 			</p:dataTable>
 

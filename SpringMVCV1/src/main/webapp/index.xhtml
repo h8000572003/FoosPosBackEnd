@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="pages/default.xhtml">
@@ -42,6 +42,17 @@
 
 
 			</b:well>
+
+
+			<ui:repeat var="item" value="#{showMessageBean.dto.messages}">
+
+				<b:panel title="#{item.createDate}-#{item.createTime}" collapsed="true"  look="info">
+					#{item.message}
+				</b:panel>
+
+
+
+			</ui:repeat>
 
 
 		</div>

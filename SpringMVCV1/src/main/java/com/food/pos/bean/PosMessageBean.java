@@ -46,8 +46,8 @@ public class PosMessageBean implements Serializable {
 	}
 
 	public String insertNewMessageWhen2Query() {
-		dto.getAddPostMessage().setCreateDate(AeUtils.getNowDate());
-		dto.getAddPostMessage().setCreateTime(AeUtils.getNowTime());
+		dto.getAddPostMessage().setCreateDate(AeUtils.getShowDate());
+		dto.getAddPostMessage().setCreateTime(AeUtils.getNowShowTime());
 		
 		this.service.insertNewMessageWhen2Query(dto);
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -65,11 +65,10 @@ public class PosMessageBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return "";
 	}
-	public String delete2Query(PosMessageResultDTO item) {
-		dto.setAddPostMessage(item);
+	public String delete2Query() {
+	
 		this.service.delete2Query(dto);
-		
-		
+		this.isModify = false;		
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"刪除完成", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);

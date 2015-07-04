@@ -85,7 +85,7 @@ public class PosMessageServiceImpl implements PosMessageService {
 		
 		this.messageDAO.delete(message);
 		this.loadMessage(dto);
-		
+		dto.setAddPostMessage(new PosMessageResultDTO());
 	}
 
 }
