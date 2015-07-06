@@ -12,10 +12,10 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.util.StringUtil;
 
 import com.food.pos.dto.ToOrderBillDTO;
 import com.food.pos.dto.ToOrderFoodDTO;
+import com.food.pos.dto.ToOrderFoodItemDTO;
 import com.food.pos.service.ToOrderBillService;
 
 @ManagedBean
@@ -38,8 +38,6 @@ public class ToOrderBillBean implements Serializable {
 		this.service.readData(dto);
 
 	}
-
-	private TestConverter fakeConverte = new TestConverter();
 
 	public ToOrderBillDTO getDto() {
 		return dto;
@@ -65,37 +63,22 @@ public class ToOrderBillBean implements Serializable {
 		return "";
 	}
 
-	private class TestConverter implements Converter {
+	public String remove(ToOrderFoodItemDTO select) {
+		dto.getToOrderFoods().remove(select);
+		return null;
+		
+	}
 
-		@Override
-		public Object getAsObject(FacesContext arg0, UIComponent arg1,
-				String arg2) throws ConverterException {
+	public String toAdd() {
 
-			for (ToOrderFoodDTO food : dto.getFoods()) {
-				if (StringUtils.equals(arg2, food.getName())) {
-					return arg2;
-				}
-			}
+		ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
+		foodItem.setName(dto.getName());
+		foodItem.setDollar(Integer.parseInt(dto.getDollar()));
+		foodItem.setNumber(dto.getNumber());
+		foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(), ","));
 
-			throw new IllegalArgumentException("Converter error");
-
-		}
-
-		@Override
-		public String getAsString(FacesContext arg0, UIComponent arg1,
-				Object object) throws ConverterException {
-
-			if (object instanceof ToOrderFoodDTO) {
-				ToOrderFoodDTO foodDTO = (ToOrderFoodDTO) object;
-				return foodDTO.getName();
-			} else {
-				throw new IllegalArgumentException("object " + object
-						+ " is of type " + object.getClass().getName()
-						+ "; expected type: java.lang.Enum");
-			}
-
-		}
-
+		dto.getToOrderFoods().add(foodItem);
+		return null;
 	}
 
 	public String changeValue() {
@@ -105,14 +88,6 @@ public class ToOrderBillBean implements Serializable {
 			}
 		}
 		return "";
-	}
-
-	public TestConverter getFakeConverte() {
-		return fakeConverte;
-	}
-
-	public void setFakeConverte(TestConverter fakeConverte) {
-		this.fakeConverte = fakeConverte;
 	}
 
 }

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.bootsfaces.render.E;
-
 public class ToOrderBillDTO implements Serializable {
 
 	/**
@@ -14,10 +12,44 @@ public class ToOrderBillDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<ToOrderFoodDTO> foods = new ArrayList<ToOrderFoodDTO>();
+	private List<ToOrderFeatureDTO> features = new ArrayList<ToOrderFeatureDTO>();
+
+	private List<String> featureStringList = new ArrayList<String>();
+
+	private List<ToOrderFoodItemDTO> toOrderFoods = new ArrayList<ToOrderFoodItemDTO>();
 
 	private String name = "";
 	private String dollar = "";
 	private String number = "";
+	private String outOrIn = "";
+	private String seat = "";
+	private String seqNo = "";
+	
+	
+
+	public String getOutOrIn() {
+		return outOrIn;
+	}
+
+	public void setOutOrIn(String outOrIn) {
+		this.outOrIn = outOrIn;
+	}
+
+	public String getSeat() {
+		return seat;
+	}
+
+	public void setSeat(String seat) {
+		this.seat = seat;
+	}
+
+	public String getSeqNo() {
+		return seqNo;
+	}
+
+	public void setSeqNo(String seqNo) {
+		this.seqNo = seqNo;
+	}
 
 	public List<ToOrderFoodDTO> getFoods() {
 		return foods;
@@ -51,6 +83,32 @@ public class ToOrderBillDTO implements Serializable {
 		this.number = number;
 	}
 
-	
+	public List<ToOrderFeatureDTO> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<ToOrderFeatureDTO> features) {
+		this.features = features;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public List<String> getFeatureStringList() {
+		return featureStringList;
+	}
+
+	public void setFeatureStringList(List<String> featureStringList) {
+		this.featureStringList = featureStringList;
+	}
+
+	public List<ToOrderFoodItemDTO> getToOrderFoods() {
+		return toOrderFoods;
+	}
+
+	public void setToOrderFoods(List<ToOrderFoodItemDTO> toOrderFoods) {
+		this.toOrderFoods = toOrderFoods;
+	}
 
 }

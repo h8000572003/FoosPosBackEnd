@@ -53,7 +53,7 @@ public class SettingFoodBean implements Serializable {
 
 	public String doQuery() {
 		this.service.findAllFoods(dto);
-		return "";
+		return null;
 	}
 
 	public String validity() {
@@ -68,7 +68,7 @@ public class SettingFoodBean implements Serializable {
 			}
 		}
 		this.isValidity = true;
-		return "";
+		return null;
 	}
 
 	public String updateFoods() {
@@ -78,14 +78,14 @@ public class SettingFoodBean implements Serializable {
 				"新增成功", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 
-		return "";
+		return null;
 	}
 
 	public String addTenColumns() {
 		for (int i = 0; i < 10; i++) {
 			dto.getItems().add(new SettingFoodItem());
 		}
-		return "";
+		return null;
 	}
 
 	public boolean isValidity() {
