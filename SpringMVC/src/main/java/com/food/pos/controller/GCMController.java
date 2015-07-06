@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.pos.domain.GCMDTO;
 import com.food.pos.domain.GCMPo;
+import com.food.pos.dto.Status;
 import com.food.pos.service.GCMService;
 import com.food.pos.util.POST2GCM;
-import com.mkyong.common.model.Status;
 
 @Controller
 @RequestMapping("/gcm")

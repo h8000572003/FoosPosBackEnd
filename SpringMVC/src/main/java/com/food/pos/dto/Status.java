@@ -1,4 +1,4 @@
-package com.mkyong.common.model;
+package com.food.pos.dto;
 
 public class Status {
 	private String code = "";

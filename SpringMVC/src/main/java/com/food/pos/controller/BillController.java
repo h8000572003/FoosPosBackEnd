@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.pos.contract.AeUtils;
+import com.food.pos.dto.Status;
 import com.food.pos.json.Bill;
 import com.food.pos.json.ReqCode;
 import com.food.pos.service.GCMComent;
 import com.food.pos.service.GCMService;
 import com.google.gson.Gson;
-import com.mkyong.common.model.Status;
 
 @Controller
 @RequestMapping("/bill")
