@@ -39,6 +39,8 @@ public class ToOrderBillBean implements Serializable {
 
 	}
 
+	private TestConverter fakeConverte = new TestConverter();
+
 	public ToOrderBillDTO getDto() {
 		return dto;
 	}
@@ -74,20 +76,43 @@ public class ToOrderBillBean implements Serializable {
 					return arg2;
 				}
 			}
-			// TODO Auto-generated method stub
-			return null;
+
+			throw new IllegalArgumentException("Converter error");
+
 		}
 
 		@Override
 		public String getAsString(FacesContext arg0, UIComponent arg1,
-				Object arg2) throws ConverterException {
-			// TODO Auto-generated method stub
-			return null;
+				Object object) throws ConverterException {
+
+			if (object instanceof ToOrderFoodDTO) {
+				ToOrderFoodDTO foodDTO = (ToOrderFoodDTO) object;
+				return foodDTO.getName();
+			} else {
+				throw new IllegalArgumentException("object " + object
+						+ " is of type " + object.getClass().getName()
+						+ "; expected type: java.lang.Enum");
+			}
+
 		}
 
 	}
 
-	public TestConverter getFakeConverter() {
-		return new TestConverter();
+	public String changeValue() {
+		for (ToOrderFoodDTO food : dto.getFoods()) {
+			if (StringUtils.equals(food.getName(), dto.getName())) {
+				dto.setDollar(food.getDollar() + "");
+			}
+		}
+		return "";
 	}
+
+	public TestConverter getFakeConverte() {
+		return fakeConverte;
+	}
+
+	public void setFakeConverte(TestConverter fakeConverte) {
+		this.fakeConverte = fakeConverte;
+	}
+
 }

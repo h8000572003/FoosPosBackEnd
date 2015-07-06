@@ -43,16 +43,54 @@
 
 
 
-				<p:outputLabel for="selectfoodId" value="食物:"></p:outputLabel>
-<!-- 				<p:selectOneButton value="#{toOrderBillBean.dto.selectFoodDTO}" -->
-<!-- 					id="selectfoodId" converter="#{toOrderBillBean.fakeConverter}"> -->
-<!-- 					<f:selectItems value="#{toOrderBillBean.dto.foods}" var="item" -->
-<!-- 						itemLabel="#{item.name}" itemValue="#{item.name}" /> -->
-<!-- 				</p:selectOneButton> -->
+
+
+				<p:selectOneButton required="true" requiredMessage="Choose a thing"
+					value="#{toOrderBillBean.dto.name}" id="selectfoodId">
 
 
 
-			
+					<f:selectItems value="#{toOrderBillBean.dto.foods}" var="item"
+						itemLabel="#{item.name}" itemValue="#{item.name}" />
+
+					<p:ajax event="change" listener="#{toOrderBillBean.changeValue}"
+						update="@form" />
+				</p:selectOneButton>
+
+
+
+
+				<b:selectOneMenu value="#{toOrderBillBean.dto.number}">
+
+					<f:selectItem itemLabel="未設定" itemValue="" />
+					<f:selectItem itemLabel="1" />
+					<f:selectItem itemLabel="2" />
+					<f:selectItem itemLabel="3" />
+					<f:selectItem itemLabel="4" />
+					<f:selectItem itemLabel="5" />
+					<f:selectItem itemLabel="6" />
+					<f:selectItem itemLabel="7" />
+					<f:selectItem itemLabel="8" />
+					<f:selectItem itemLabel="9" />
+					<f:selectItem itemLabel="10" />
+					<f:facet name="prepend">
+
+						<h:outputText value="$" />
+						<h:outputText value="#{toOrderBillBean.dto.dollar}" />
+
+
+					</f:facet>
+
+					<f:facet name="append">
+						<h:outputText value="數量" />
+
+					</f:facet>
+
+				</b:selectOneMenu>
+
+
+				<b:commandButton value="send" action="#{toOrderBillBean.toSend}"></b:commandButton>
+
 
 			</b:panel>
 

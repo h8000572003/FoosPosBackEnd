@@ -15,7 +15,9 @@ public class ToOrderBillDTO implements Serializable {
 
 	private List<ToOrderFoodDTO> foods = new ArrayList<ToOrderFoodDTO>();
 
-	private ToOrderFoodDTO selectFoodDTO = null;
+	private String name = "";
+	private String dollar = "";
+	private String number = "";
 
 	public List<ToOrderFoodDTO> getFoods() {
 		return foods;
@@ -25,13 +27,30 @@ public class ToOrderBillDTO implements Serializable {
 		this.foods = foods;
 	}
 
-	public ToOrderFoodDTO getSelectFoodDTO() {
-		return selectFoodDTO;
+	public String getName() {
+		return name;
 	}
 
-	public void setSelectFoodDTO(ToOrderFoodDTO selectFoodDTO) {
-		this.selectFoodDTO = selectFoodDTO;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDollar() {
+		return dollar;
+	}
+
+	public void setDollar(String dollar) {
+		this.dollar = dollar;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	
+
 }
