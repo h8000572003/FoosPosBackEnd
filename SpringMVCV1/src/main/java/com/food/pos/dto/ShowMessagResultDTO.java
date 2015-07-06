@@ -2,12 +2,7 @@ package com.food.pos.dto;
 
 import java.io.Serializable;
 
-public class PosMessageResultDTO   implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class ShowMessagResultDTO implements Serializable{
 	private Long id;
 
 	private String message="";
@@ -47,9 +42,7 @@ public class PosMessageResultDTO   implements Serializable{
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	
-	
-	
+
 	
 	
 }

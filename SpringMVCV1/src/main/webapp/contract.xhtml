@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+
+	<ui:define name="content">
+
+
+		<h:form id="form">
+
+
+
+
+
+
+			<b:well>
+				<h3>
+					<strong>輸入訊息</strong>
+				</h3>
+
+
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="姓名："></h:outputText>
+					<b:inputText required="true" requiredMessage="姓名必填">
+
+					</b:inputText>
+
+
+					<h:outputText value="信箱："></h:outputText>
+					<b:inputText>
+						<f:facet name="prepend">
+							<h:outputText value="@" />
+						</f:facet>
+					</b:inputText>
+
+					<h:outputText value="聯絡電話："></h:outputText>
+					<b:inputText required="true" requiredMessage="電話必填">
+
+					</b:inputText>
+
+
+					<h:outputText value="說明："></h:outputText>
+					<p:inputTextarea required="true" maxlength="200"
+						requiredMessage="說明必填"
+						value="#{posMessageBean.dto.addPostMessage.message}"
+						style="width:100%"></p:inputTextarea>
+
+				</h:panelGrid>
+
+
+
+				<b:commandButton value="送出" look="primary"
+					rendered="#{!posMessageBean.modify}"
+					action="#{posMessageBean.insertNewMessageWhen2Query}"></b:commandButton>
+
+
+
+			</b:well>
+
+
+
+
+
+
+
+		</h:form>
+
+
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

@@ -33,6 +33,8 @@ public class PosMessageBean implements Serializable {
 	@ManagedProperty(value = "#{posMessageService}")
 	private transient PosMessageService service;
 
+	private boolean isLock = true;
+
 	@PostConstruct
 	public void init() {
 		this.dto = new PosMessageDTO();
@@ -48,10 +50,9 @@ public class PosMessageBean implements Serializable {
 	public String insertNewMessageWhen2Query() {
 		dto.getAddPostMessage().setCreateDate(AeUtils.getShowDate());
 		dto.getAddPostMessage().setCreateTime(AeUtils.getNowShowTime());
-		
+
 		this.service.insertNewMessageWhen2Query(dto);
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"完成", null);
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "完成", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return "";
 	}
@@ -59,25 +60,30 @@ public class PosMessageBean implements Serializable {
 	public String modify2Query() {
 		this.service.modify2Query(dto);
 		this.isModify = false;
-		
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"修改完成", null);
+
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "修改完成", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return "";
 	}
+
 	public String delete2Query() {
-	
+
 		this.service.delete2Query(dto);
-		this.isModify = false;		
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"刪除完成", null);
+		this.isModify = false;
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "刪除完成", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return null;
-		
+
+	}
+
+	public void unLock() {
+		this.isLock = false;
 	}
 
 	public String cancel() {
 		this.isModify = false;
+		this.dto = new PosMessageDTO();
+		this.service.loadMessage(dto);
 		return "";
 	}
 
@@ -111,6 +117,14 @@ public class PosMessageBean implements Serializable {
 
 	public void setLOG(Logger lOG) {
 		LOG = lOG;
+	}
+
+	public boolean isLock() {
+		return isLock;
+	}
+
+	public void setLock(boolean isLock) {
+		this.isLock = isLock;
 	}
 
 }

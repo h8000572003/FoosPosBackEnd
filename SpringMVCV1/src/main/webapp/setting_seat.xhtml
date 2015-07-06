@@ -16,7 +16,7 @@
 				<p:dataTable var="item" value="#{settingFoodBean.dto.items}">
 
 					<p:column headerText="名稱">
-						<b:inputText value="#{item.name}" />
+						<h:inputText value="#{item.name}" />
 					</p:column>
 					<p:column headerText="金額">
 						<b:inputText value="#{item.dollar}">
@@ -26,19 +26,17 @@
 						</b:inputText>
 					</p:column>
 				</p:dataTable>
-
-
-				<b:commandButton value="增加更多欄位"
-					action="#{settingFoodBean.addTenColumns}"></b:commandButton>
-				<b:commandButton value="驗證" action="#{settingFoodBean.validity}"></b:commandButton>
-				<b:commandButton value="更新" rendered="#{settingFoodBean.validity}"
-					action="#{settingFoodBean.updateFoods}"></b:commandButton>
 			</b:panel>
 
 
 
 
+			<b:commandButton value="增加更多欄位"
+				action="#{settingFoodBean.addTenColumns}"></b:commandButton>
 
+			<b:commandButton value="驗證" action="#{settingFoodBean.validity}"></b:commandButton>
+			<b:commandButton value="更新" rendered="#{settingFoodBean.validity}"
+				action="#{settingFoodBean.updateFoods}"></b:commandButton>
 		</h:form>
 	</ui:define>
 
