@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+
+	<ui:define name="content">
+
+
+		<h:form id="form">
+
+
+
+
+
+			<h4>新增訊息</h4>
+			<b:well>
+				<h3>
+					<strong>輸入最新公告</strong>
+				</h3>
+					輸入完成後將會顯示於首頁
+					<p:inputTextarea maxlength="200"
+					rendered="#{!posMessageBean.modify}"
+					value="#{posMessageBean.dto.addPostMessage.message}"
+					style="width:100%"></p:inputTextarea>
+
+				<p:inputTextarea maxlength="200" rendered="#{posMessageBean.modify}"
+					value="#{posMessageBean.dto.selectPostMessage.message}"
+					style="width:100%"></p:inputTextarea>
+
+
+
+
+				<b:commandButton value="解鎖" look="danger" id="lockId"
+					rendered="#{posMessageBean.lock}" action="#{posMessageBean.unLock}"></b:commandButton>
+
+
+
+				<b:commandButton value="新增" rendered="#{!posMessageBean.modify}"
+					action="#{posMessageBean.insertNewMessageWhen2Query}"></b:commandButton>
+
+
+				<b:commandButton value="修改" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.modify2Query}"></b:commandButton>
+
+				<b:commandButton value="刪除" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.delete2Query}"></b:commandButton>
+
+				<b:commandButton value="取消" rendered="#{posMessageBean.modify}"
+					action="#{posMessageBean.cancel}"></b:commandButton>
+
+
+
+			</b:well>
+
+
+
+
+			<p:dataTable var="item"
+				value="#{posMessageBean.dto.posMessageResultDTOs}" paginator="true"
+				selectionMode="single"
+				selection="#{posMessageBean.dto.selectPostMessage}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowKey="#{item}" style="margin-bottom:0">
+
+
+				<p:ajax event="rowSelect" listener="#{posMessageBean.beginModify}"
+					update="@form" />
+
+
+
+
+
+
+				<p:column headerText="公告">
+
+					<h:outputText value="#{item.message}" />
+					<br></br>
+					#{item.createDate} #{item.createTime}
+				</p:column>
+
+
+
+
+
+
+
+			</p:dataTable>
+		</h:form>
+
+
+
+
+
+
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>

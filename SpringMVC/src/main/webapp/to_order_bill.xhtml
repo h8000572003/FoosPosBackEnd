@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="pages/default.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+
+
+
+
+			<b:panel title="點菜">
+
+
+
+				<b:panelGrid colSpans="1,3,1,3,1,3">
+					<h:outputLabel value="序號：" />
+					<b:inputText id="selNo" value="123" disabled="true"></b:inputText>
+
+					<p:outputLabel value="內用外帶:"></p:outputLabel>
+					<b:selectOneMenu id="inOrOut">
+						<f:selectItem itemLabel="未設定" itemValue="" />
+						<f:selectItem itemLabel="內用" itemValue="I" />
+						<f:selectItem itemLabel="外帶" itemValue="O" />
+					</b:selectOneMenu>
+
+
+					<p:outputLabel value="座位:"></p:outputLabel>
+					<b:selectOneMenu id="seat">
+						<f:selectItem itemLabel="未設定" itemValue="" />
+						<f:selectItem itemLabel="1" itemValue="1" />
+						<f:selectItem itemLabel="2" itemValue="2" />
+					</b:selectOneMenu>
+
+				</b:panelGrid>
+
+
+
+
+				<p:outputLabel for="selectfoodId" value="食物:"></p:outputLabel>
+				<p:selectOneButton id="selectfoodId">
+					<f:selectItems value="#{toOrderBillBean.dto.foods}" var="item"
+						itemLabel="#{item.name}" itemValue="#{item.dollar}" />
+				</p:selectOneButton>
+
+
+
+
+
+			</b:panel>
+
+
+			
+		
+			
+			 
+		</h:form>
+	</ui:define>
+
+
+
+
+</ui:composition>
+</html>
