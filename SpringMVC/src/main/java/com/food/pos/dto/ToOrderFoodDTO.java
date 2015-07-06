@@ -1,9 +1,14 @@
 package com.food.pos.dto;
 
-public class ToOrderFoodDTO {
+import java.io.Serializable;
+
+public class ToOrderFoodDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private int dollar = 0;
-	private String number = "";
 
 	public String getName() {
 		return name;
@@ -21,12 +26,5 @@ public class ToOrderFoodDTO {
 		this.dollar = dollar;
 	}
 
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
+	
 }

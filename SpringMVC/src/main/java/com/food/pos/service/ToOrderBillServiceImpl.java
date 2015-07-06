@@ -26,7 +26,7 @@ public class ToOrderBillServiceImpl implements ToOrderBillService {
 			final ToOrderFoodDTO foodDTO = new ToOrderFoodDTO();
 			foodDTO.setName(food.getName());
 			foodDTO.setDollar(Integer.parseInt(food.getDollar()));
-			foodDTO.setNumber("");
+			
 			dto.getFoods().add(foodDTO);
 		}
 
