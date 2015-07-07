@@ -9,26 +9,27 @@
 
 <ui:composition template="pages/default.xhtml">
 
+
+
 	<ui:define name="content">
-		<h:form id="form">
+		<h:form>
+
+			<p:remoteCommand update="orderPanel" name="chagneValueEvent"></p:remoteCommand>
 
 
-
-
-			<b:panel title="點菜">
+			<b:panel id="orderPanel" title="點菜">
 
 
 
 				<b:panelGrid colSpans="1,3,1,3,1,3">
 					序號：
 					<b:inputText value="#{toOrderBillBean.dto.seqNo}" disabled="true"></b:inputText>
-					
-					座位:
-					
-					
-					
-					<b:selectOneMenu value="#{toOrderBillBean.dto.seat}"
-						id="selectSeat">
+
+
+
+
+					<p:selectOneMenu value="#{toOrderBillBean.dto.seat}"
+						onchange="chagneValueEvent();" id="selectSeat">
 						<f:selectItem itemLabel="未設定" itemValue="" />
 						<f:selectItem itemLabel="1" itemValue="1" />
 						<f:selectItem itemLabel="2" itemValue="2" />
@@ -40,15 +41,18 @@
 						<f:selectItem itemLabel="o中" itemValue="o中" />
 						<f:selectItem itemLabel="o電" itemValue="o電" />
 
-					</b:selectOneMenu>
+					</p:selectOneMenu>
 
 					內用外帶:
-					<b:selectOneMenu value="#{toOrderBillBean.dto.outOrIn}"
-						id="selectOutOrIn">
+					<p:selectOneMenu value="#{toOrderBillBean.dto.outOrIn}"
+						onchange="chagneValueEvent();" id="selectOutOrIn">
 						<f:selectItem itemLabel="未設定" itemValue="" />
 						<f:selectItem itemLabel="內用" itemValue="I" />
 						<f:selectItem itemLabel="外帶" itemValue="O" />
-					</b:selectOneMenu>
+
+
+
+					</p:selectOneMenu>
 
 
 
@@ -76,7 +80,8 @@
 
 
 
-				<b:selectOneMenu value="#{toOrderBillBean.dto.number}">
+				<b:selectOneMenu requiredMessage="數量要選"
+					value="#{toOrderBillBean.dto.number}">
 
 					<f:selectItem itemLabel="未設定" itemValue="" />
 					<f:selectItem itemLabel="1" itemValue="1" />
@@ -91,8 +96,8 @@
 					<f:selectItem itemLabel="10" itemValue="10" />
 					<f:facet name="prepend">
 
-						<h:outputText value="$" />
-						<h:outputText value="#{toOrderBillBean.dto.dollar}" />
+						<h:outputText value="#{toOrderBillBean.dto.name}" />
+						<h:outputText value="$#{toOrderBillBean.dto.dollar}" />
 
 
 					</f:facet>
@@ -103,6 +108,8 @@
 
 				</b:selectOneMenu>
 
+
+
 				<p:selectManyButton value="#{toOrderBillBean.dto.featureStringList}">
 
 
@@ -112,48 +119,83 @@
 
 
 				</p:selectManyButton>
+
+
+
+
+
+
+
+				<b:well id="wallId">
+
+					<ui:repeat var="item" value="#{toOrderBillBean.dto.toOrderFoods}">
+
+						<b:commandButton action="#{toOrderBillBean.remove(item)}"
+							oncomplete="chagneValueEvent();"
+							value="#{item.name} x #{item.number} ($ #{item.dollar}) #{item.specailize}">
+						</b:commandButton>
+					</ui:repeat>
+				</b:well>
 				<br></br>
-				<b:commandButton value="加入" action="#{toOrderBillBean.toAdd}"></b:commandButton>
-
-
-
-				<p:dataTable var="item" value="#{toOrderBillBean.dto.toOrderFoods}"
-					
-					
-					style="margin-bottom:0">
+				<p:commandButton value="加入" update="@form"
+					actionListener="#{toOrderBillBean.toAdd}"></p:commandButton>
 
 
 
 
+				<p:commandButton value="買單" update="@form"
+					actionListener="#{toOrderBillBean.count}"
+					oncomplete="PF('buyDialog').show()" title="View">
+
+				</p:commandButton>
+
+				<b:commandButton rendered="#{toOrderBillBean.dto.payied eq 'Y'}"
+					action="#{toOrderBillBean.toSend}" value="列印與送出" look="primary"
+					icon="print"></b:commandButton>
+
+
+				<p:dialog header="商品明細" widgetVar="buyDialog" modal="true"
+					width="80%" height="80%" showEffect="fade" hideEffect="fade"
+					resizable="false">
+					<p:outputPanel>
+
+						<b:well>
+							<b:row>
 
 
 
+								<h2>
+									<strong>購買商品項目 <font color="red">
+											$#{toOrderBillBean.dto.totalMoney}</font>
+									</strong>
+								</h2>
+
+								<ui:repeat var="item"
+									value="#{toOrderBillBean.dto.toOrderFoods}">
 
 
-					<p:column headerText="明細">
+									<b:column span="4">
+										<b:inputText disabled="true"
+											value="#{item.name} x #{item.number} ($ #{item.dollar}) #{item.specailize}" />
+									</b:column>
+								</ui:repeat>
 
-						<b:commandButton value="清除"
-							action="#{toOrderBillBean.remove(item)}"></b:commandButton>
-					#{item.name} x #{item.number} ($ #{item.dollar}) #{item.specailize}
-					
-					
-					</p:column>
+							</b:row>
 
+							<b:panelGrid colSpans="1,3,1,3,1,3">
 
-
-
-
-
+								<b:commandButton immediate="false" value="確定"
+									actionListener="#{toOrderBillBean.hasPay}" look="danger"></b:commandButton>
 
 
+							</b:panelGrid>
 
-				</p:dataTable>
+						</b:well>
+					</p:outputPanel>
+				</p:dialog>
 
-				<b:commandButton value="買單" action="#{toOrderBillBean.toSend}"></b:commandButton>
 			</b:panel>
 
-
-			
 		
 			
 			 

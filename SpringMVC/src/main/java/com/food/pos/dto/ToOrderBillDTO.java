@@ -24,8 +24,54 @@ public class ToOrderBillDTO implements Serializable {
 	private String outOrIn = "";
 	private String seat = "";
 	private String seqNo = "";
+	private String totalMoney = "";
+	private String payied = "";
+
+	private String tx = "";
+	private String date = "";
+	private String time = "";
 	
 	
+
+	public String getTx() {
+		return tx;
+	}
+
+	public void setTx(String tx) {
+		this.tx = tx;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getPayied() {
+		return payied;
+	}
+
+	public void setPayied(String payied) {
+		this.payied = payied;
+	}
+
+	public String getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(String totalMoney) {
+		this.totalMoney = totalMoney;
+	}
 
 	public String getOutOrIn() {
 		return outOrIn;

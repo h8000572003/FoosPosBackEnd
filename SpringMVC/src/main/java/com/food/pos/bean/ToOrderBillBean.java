@@ -3,6 +3,7 @@ package com.food.pos.bean;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -60,16 +61,22 @@ public class ToOrderBillBean implements Serializable {
 	}
 
 	public String toSend() {
-		return "";
+		this.service.sendBill(dto);
+		this.dto = new ToOrderBillDTO();
+		this.service.readData(dto);
+		
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "新增成功", null);
+		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		return null;
 	}
 
 	public String remove(ToOrderFoodItemDTO select) {
 		dto.getToOrderFoods().remove(select);
 		return null;
-		
+
 	}
 
-	public String toAdd() {
+	public void toAdd() {
 
 		ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
 		foodItem.setName(dto.getName());
@@ -77,8 +84,15 @@ public class ToOrderBillBean implements Serializable {
 		foodItem.setNumber(dto.getNumber());
 		foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(), ","));
 
-		dto.getToOrderFoods().add(foodItem);
-		return null;
+		if (dto.getToOrderFoods().contains(foodItem)) {
+			foodItem = dto.getToOrderFoods().get(
+					dto.getToOrderFoods().indexOf(foodItem));
+			foodItem.setNumber(Integer.parseInt(foodItem.getNumber())
+					+ Integer.parseInt(dto.getNumber()) + "");
+		} else {
+			dto.getToOrderFoods().add(foodItem);
+		}
+
 	}
 
 	public String changeValue() {
@@ -90,4 +104,15 @@ public class ToOrderBillBean implements Serializable {
 		return "";
 	}
 
+	public void count() {
+		int total = 0;
+		for (ToOrderFoodItemDTO item : dto.getToOrderFoods()) {
+			total += item.getDollar() * Integer.parseInt(item.getNumber());
+		}
+		dto.setTotalMoney(total + "");
+	}
+
+	public void hasPay() {
+		this.getDto().setPayied("Y");
+	}
 }
