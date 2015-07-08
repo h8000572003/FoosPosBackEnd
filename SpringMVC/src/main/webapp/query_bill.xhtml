@@ -21,16 +21,16 @@
 					<tr>
 
 						<th><p:outputLabel value="查詢年:  " /></th>
-						<td>	<p:calendar id="mask" value="#{billBean.dto.queryDate}"
-						pattern="yyyy-MM-dd" mask="true">
+						<td><p:calendar id="mask" value="#{billBean.dto.queryDate}"
+								pattern="yyyy-MM-dd" mask="true">
 
-					</p:calendar></td>
+							</p:calendar></td>
 					</tr>
 				</table>
-				
+
 				<br></br>
 
-			
+
 
 				<p:dataTable var="item" value="#{billBean.dto.bills}">
 
@@ -61,15 +61,28 @@
 				<p:dialog header="商品明細" widgetVar="billDialog" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false">
 					<p:outputPanel id="detial" style="text-align:center;">
-						<p:dataTable var="item" value="#{billBean.dto.selectBill.meals}">
-							<p:column headerText="名稱">
-								<h:outputText value="#{item.name}" />
-							</p:column>
+						
 
-							<p:column headerText="數量">
-								<h:outputText value="#{item.number}" />
-							</p:column>
-						</p:dataTable>
+
+						<b:well>
+							<b:row>
+
+
+
+								
+
+								<ui:repeat var="item"
+									value="#{billBean.dto.selectBill.meals}">
+
+
+									<b:column span="4">
+										<b:inputText disabled="true"
+											value="#{item.name} x #{item.number} " />
+									</b:column>
+								</ui:repeat>
+
+							</b:row>
+						</b:well>
 					</p:outputPanel>
 				</p:dialog>
 

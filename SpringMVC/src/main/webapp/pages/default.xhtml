@@ -11,13 +11,15 @@
 	<title>POS</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet library="css" name="test.css"></h:outputStylesheet>
+
 </h:head>
 <h:body>
 
 
 	<!-- 		<ui:include src="/pages/menu.xhtml"></ui:include> -->
 	<p:growl id="msgs" showDetail="true" />
-	<b:navBar brand="POS" inverse="true" fixed="true" static="true">
+	<b:navBar brand="POS" inverse="true" fixed="top" >
 		<b:navbarLinks>
 			<b:navLink value="Home" href="/faces/index.xhtml"></b:navLink>
 
@@ -41,8 +43,8 @@
 				<b:navLink value="座位" href="/faces/setting_seat.xhtml"></b:navLink>
 				<b:navLink value="客製化" href="/faces/setting_feature.xhtml"></b:navLink>
 				<b:navLink value="手機資料" href="/faces/setting_seat.xhtml"></b:navLink>
-				
-				
+
+
 			</b:dropMenu>
 
 
@@ -55,12 +57,17 @@
 	</b:navBar>
 	<b:container>
 
+		<div class="Main">
+			<ui:insert name="content">
+			</ui:insert>
 
-		<ui:insert name="content">
-		</ui:insert>
-
-
+		</div>
 
 	</b:container>
+	<b:navBar brand="POS" fixed="bottom"   inverse="false"  static="true">
+
+		
+
+	</b:navBar>
 </h:body>
 </html>
