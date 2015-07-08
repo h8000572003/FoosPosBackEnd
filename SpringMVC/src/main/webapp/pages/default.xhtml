@@ -10,51 +10,34 @@
 <h:head>
 	<title>POS</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<h:outputStylesheet library="css" name="test.css"></h:outputStylesheet>
 
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+	<!-- 最新編譯和最佳化的 CSS -->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+
+	<!-- 選擇性佈景主題 -->
+
+
+
+	<!-- 最新編譯和最佳化的 JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.mi
+	n.js"></script>
+	<h:outputStylesheet library="css" name="test.css"></h:outputStylesheet>
 </h:head>
 <h:body>
 
 
-	<!-- 		<ui:include src="/pages/menu.xhtml"></ui:include> -->
-	<p:growl id="msgs" showDetail="true" />
-	<b:navBar brand="POS" inverse="true" fixed="top" >
-		<b:navbarLinks>
-			<b:navLink value="Home" href="/faces/index.xhtml"></b:navLink>
-
-
-			<b:navLink value="點菜" href="/faces/to_order_bill.xhtml"></b:navLink>
-
-			<b:dropMenu value="公告">
-				<b:navLink value="新增公告" href="/faces/pos_message.xhtml"></b:navLink>
-				<b:navLink value="通知使用者" href="/faces/pos_message_for_phone.xhtml"></b:navLink>
-			</b:dropMenu>
-
-			<b:dropMenu value="查詢">
-				<b:navLink value="當天菜單" href="/faces/query_bill.xhtml"></b:navLink>
-
-			</b:dropMenu>
-
-
-			<b:dropMenu value="設定">
-
-				<b:navLink value="食物" href="/faces/setting_food.xhtml"></b:navLink>
-				<b:navLink value="座位" href="/faces/setting_seat.xhtml"></b:navLink>
-				<b:navLink value="客製化" href="/faces/setting_feature.xhtml"></b:navLink>
-				<b:navLink value="手機資料" href="/faces/setting_seat.xhtml"></b:navLink>
-
-
-			</b:dropMenu>
-
-
-
-
-			<b:navLink value="聯絡我們" href="/faces/contract.xhtml"></b:navLink>
-
-
-		</b:navbarLinks>
-	</b:navBar>
+	<ui:include src="/pages/menu.xhtml"></ui:include>
+	<div class="message">
+		<p:growl id="msgs" showDetail="true" />
+	</div>
+	
 	<b:container>
 
 		<div class="Main">
@@ -64,10 +47,6 @@
 		</div>
 
 	</b:container>
-	<b:navBar brand="POS" fixed="bottom"   inverse="false"  static="true">
 
-		
-
-	</b:navBar>
 </h:body>
 </html>

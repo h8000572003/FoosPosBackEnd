@@ -9,6 +9,9 @@ public class QueryBillReporDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String yyyy;
 	private String month;
+	private int totalMoney = 0;
+	private String begin = "";
+	private String endDate = "";
 
 	private QueryBillReporDTOResutDTO queryBillReporDTOResutDTO = new QueryBillReporDTOResutDTO();
 

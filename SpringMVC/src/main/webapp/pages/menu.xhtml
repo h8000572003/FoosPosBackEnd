@@ -6,38 +6,39 @@
 
 
 
-<b:navBar brand="POS機" brandHref="" fixed="true">
+<b:navBar brand="POS" inverse="true" fixed="top">
 	<b:navbarLinks>
 		<b:navLink value="Home" href="/faces/index.xhtml"></b:navLink>
+
+
+		<b:navLink value="點菜" href="/faces/to_order_bill.xhtml"></b:navLink>
 
 		<b:dropMenu value="公告">
 			<b:navLink value="新增公告" href="/faces/pos_message.xhtml"></b:navLink>
 			<b:navLink value="通知使用者" href="/faces/pos_message_for_phone.xhtml"></b:navLink>
 		</b:dropMenu>
 
-		<b:navLink value="查詢歷史菜單" href="/faces/query_bill.xhtml"></b:navLink>
-
-
-
-		<b:navLink value="" href="#"></b:navLink>
 		<b:dropMenu value="查詢">
-			<b:navLink value="查詢帳單" href="/faces/query_bill.xhtml"></b:navLink>
-			<b:navLink value="報表" href="/faces/query_bill_report.xhtml"></b:navLink>
-
-			<b:navLink></b:navLink>
-			
+			<b:navLink value="當天菜單" href="/faces/query_bill.xhtml"></b:navLink>
+			<b:navLink value="月報" href="/faces/query_bill_report.xhtml"></b:navLink>
 
 		</b:dropMenu>
+
+
 		<b:dropMenu value="設定">
-			<b:navLink value="餐點" href="/faces/setting_food.xhtml"></b:navLink>
-			<b:navLink value="使用者資料" href="#"></b:navLink>
-			<b:navLink value="座位" href="#"></b:navLink>
-			<b:navLink value="特徵" href="#"></b:navLink>
+
+			<b:navLink value="食物" href="/faces/setting_food.xhtml"></b:navLink>
+			<b:navLink value="座位" href="/faces/setting_seat.xhtml"></b:navLink>
+			<b:navLink value="客製化" href="/faces/setting_feature.xhtml"></b:navLink>
+			<b:navLink value="手機資料" href="/faces/setting_seat.xhtml"></b:navLink>
 
 
 		</b:dropMenu>
-		
-		
+
+
+
+
+
 	</b:navbarLinks>
 </b:navBar>
 

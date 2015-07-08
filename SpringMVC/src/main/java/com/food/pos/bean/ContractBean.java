@@ -14,6 +14,8 @@ import com.food.pos.service.ContractService;
 @RequestScoped
 public class ContractBean implements Serializable {
 	private transient ContractDTO dto;
+	
+	
 
 	@ManagedProperty(value = "#{contractService}")
 	private transient ContractService service;

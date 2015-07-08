@@ -14,8 +14,8 @@
 
 
 
-
-			<b:panel title="查詢歷史菜單">
+			<b:well>
+				<h1>查詢歷史菜單</h1>
 
 				<table>
 					<tr>
@@ -36,7 +36,10 @@
 
 
 					<p:column headerText="訂單時間">
-						<h:outputText value="#{item.bill.orderTime}" />
+						<h:outputText value="#{item.bill.orderTime}"
+							converter="com.food.pos.bean.converter.TimeConverter">
+
+						</h:outputText>
 					</p:column>
 
 					<p:column headerText="收費金額">
@@ -61,7 +64,7 @@
 				<p:dialog header="商品明細" widgetVar="billDialog" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false">
 					<p:outputPanel id="detial" style="text-align:center;">
-						
+
 
 
 						<b:well>
@@ -69,10 +72,9 @@
 
 
 
-								
 
-								<ui:repeat var="item"
-									value="#{billBean.dto.selectBill.meals}">
+
+								<ui:repeat var="item" value="#{billBean.dto.selectBill.meals}">
 
 
 									<b:column span="4">
@@ -87,15 +89,16 @@
 				</p:dialog>
 
 
+				<b:commandButton value="查詢" action="#{billBean.doQuery}"></b:commandButton>
+			</b:well>
 
-			</b:panel>
 
-
-
-			<b:commandButton value="查詢" action="#{billBean.doQuery}"></b:commandButton>
 			
-			 <b:button look="primary" icon="print" value="" />
+			
+			 
+		
 		</h:form>
+
 	</ui:define>
 
 

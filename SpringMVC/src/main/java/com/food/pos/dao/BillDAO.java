@@ -14,12 +14,13 @@ public interface BillDAO extends GenericDAO<BillPo> {
 	public List<BillPo> findTodayUnBuy(String date);
 
 	public List<BillPo> findTodayUnBuyAndNoSpeakOut(String date);
-	
-	
+
 	public List<BillPo> findTodayUnBuyAndSpeakOut(String date);
 
 	public List<BillPo> findToday(String date);
 
 	public List<BillPo> findBillByTxId(String txId);
+
+	public List<BillPo> findBillByLikeDate(String date);
 
 }

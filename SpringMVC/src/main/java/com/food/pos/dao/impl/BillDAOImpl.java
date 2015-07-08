@@ -79,4 +79,13 @@ public class BillDAOImpl extends BaseDAOHibernate<BillPo> implements BillDAO {
 		criteria.add(Restrictions.eq("isSpeakOut", "Y"));
 		return criteria.list();
 	}
+
+	@Override
+	public List<BillPo> findBillByLikeDate(String date) {
+		Criteria criteria = getSession().createCriteria(BillPo.class);
+		criteria.addOrder(Order.asc("txId"));
+
+		criteria.add(Restrictions.like("orderDate", date + "%"));
+		return criteria.list();
+	}
 }

@@ -13,25 +13,33 @@
 		<h:form id="form">
 
 
-			
-
-			<b:panel title="建立報表">
 
 
-				<p:panelGrid columns="2">
-					<p:outputLabel value="查詢日期:  " />
-					<b:inputText value="#{QueryBillReportBean.dto.yyyy}">
+			<b:well collapsed="false" collapsible="false" look="info">
+				<h1>查詢報表</h1>
+				輸入年月查詢相關資料
+				<br></br>
+
+				<b:panelGrid colSpans="3,3,3,3">
+
+					<b:inputText value="#{queryBillReportBean.dto.yyyy}">
 						<f:facet name="prepend">
-							<h:outputText value="年" />
+							<h:outputText value="年" converter="#{timeConverter}">
+
+								
+							</h:outputText>
 						</f:facet>
 					</b:inputText>
 
 
 
-					<p:outputLabel value="查詢月:  " />
 
-					<p:selectOneMenu id="console"
-						value="#{QueryBillReportBean.dto.month}">
+					<b:selectOneMenu id="console"
+						value="#{queryBillReportBean.dto.month}">
+
+						<f:facet name="prepend">
+							<h:outputText value="查詢月:" />
+						</f:facet>
 						<f:selectItem itemLabel="整年" itemValue="" />
 						<f:selectItem itemLabel="1月" itemValue="01" />
 						<f:selectItem itemLabel="2月" itemValue="02" />
@@ -45,19 +53,23 @@
 						<f:selectItem itemLabel="10月" itemValue="10" />
 						<f:selectItem itemLabel="11月" itemValue="11" />
 						<f:selectItem itemLabel="12月" itemValue="12" />
-					</p:selectOneMenu>
-				</p:panelGrid>
+					</b:selectOneMenu>
+
+
+				</b:panelGrid>
+
 
 				<br></br>
 
 
+				<b:commandButton value="查詢"
+					action="#{queryBillReportBean.queryMonth}"></b:commandButton>
 
 
-				<b:commandButton value="下載報表" action="#{billBean.doQuery}"></b:commandButton>
 
 
 
-			</b:panel>
+			</b:well>
 
 
 
