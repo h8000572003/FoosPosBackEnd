@@ -7,12 +7,6 @@
 　margin-top: -100px;
 }
 
-body.padding {
-    padding-top: 25px;
-    padding-right: 50px;
-    padding-bottom: 25px;
-    padding-left: 50px;
-}
-.container{
-	margin-top: 40dp
+body {
+    margin-top: 500px
 }
