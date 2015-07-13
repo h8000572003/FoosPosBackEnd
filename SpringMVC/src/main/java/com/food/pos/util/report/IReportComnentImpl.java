@@ -37,22 +37,31 @@ public class IReportComnentImpl implements IReportComnent {
 		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
 				iReprtParmeter.getContentData());
 
-		final String path = File.separator + posSystemConfig.getShare() + "/"
-				+ AeUtils.getNowDate() + AeUtils.getNowTime() + ".pdf";
+		String outPutPath = "";
 		try {
-			final String reportPath = File.separator
-					+ posSystemConfig.getConfig() + File.separator + REPORT
-					+ File.separator + iReprtParmeter.getReportID() + _JASPER;
+			final String reportPath = posSystemConfig.getConfig()
+					+ File.separator + REPORT + File.separator
+					+ iReprtParmeter.getReportID() + _JASPER;
 
-			JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath,
-					iReprtParmeter.getTitle(), beanCollectionDataSource);
-			this.downLoadPDF(jasperPrint, path);
+			File f = new File(reportPath);
+			LOG.info("input reportPath:" + f.getAbsolutePath());
+
+			final JasperPrint jasperPrint = JasperFillManager.fillReport(
+					reportPath, iReprtParmeter.getTitle(),
+					beanCollectionDataSource);
+
+			outPutPath = File.separator + posSystemConfig.getShare()
+					+ File.separator + AeUtils.getNowDate()
+					+ AeUtils.getNowTime() + ".pdf";
+
+			LOG.info("output path:" + outPutPath);
+			this.downLoadPDF(jasperPrint, outPutPath);
 		} catch (JRException e) {
 			LOG.error("e:" + e);
 			throw new RuntimeException("產製檔案失敗");
 		}
 
-		return path;
+		return outPutPath;
 	}
 
 	public void downLoadPDF(JasperPrint print, final String generateFilePath) {

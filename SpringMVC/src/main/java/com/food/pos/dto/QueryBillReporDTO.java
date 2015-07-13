@@ -2,7 +2,9 @@ package com.food.pos.dto;
 
 import java.io.Serializable;
 
-public class QueryBillReporDTO implements Serializable {
+import com.food.pos.util.report.IReprtParmeter;
+
+public class QueryBillReporDTO extends IReprtParmeter implements Serializable {
 	/**
 	 * 
 	 */

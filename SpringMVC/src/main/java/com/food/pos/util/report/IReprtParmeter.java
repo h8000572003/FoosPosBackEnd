@@ -7,7 +7,7 @@ public class IReprtParmeter implements ReportParmter {
 
 	private Map<String, Object> title;
 	private List<Map<String, String>> contentData;
-	private String reportID = "";
+	private Report report = null;
 
 	/**
 	 * 
@@ -15,16 +15,38 @@ public class IReprtParmeter implements ReportParmter {
 	 * @param title
 	 * @param contentData
 	 */
-	public final void set(String reportId, Map<String, Object> title,
+	public final void set(Report reportId, Map<String, Object> title,
 			List<Map<String, String>> contentData) {
-		this.reportID = reportId;
+		this.report = reportId;
 		this.title = title;
 		this.contentData = contentData;
 	}
 
+	public static enum Report {
+
+		R001("month001")
+
+		;
+
+		private Report(String path) {
+
+			this.path = path;
+		}
+
+		public String getPath() {
+			return path;
+		}
+
+		public void setPath(String path) {
+			this.path = path;
+		}
+
+		private String path = "";
+	}
+
 	@Override
 	public String getReportID() {
-		return this.reportID;
+		return this.report.getPath();
 	}
 
 	public Map<String, Object> getTitle() {

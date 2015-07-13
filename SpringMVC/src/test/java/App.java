@@ -1,25 +1,29 @@
-import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.food.pos.dao.BillDAO;
-import com.food.pos.domain.BillPo;
+import com.food.pos.dto.QueryBillReporDTO;
+import com.food.pos.util.report.IReportComnent;
+import com.food.pos.util.report.IReprtParmeter.Report;
 
 public class App {
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(
 				"mvc-dispatcher-servlet.xml");
-		BillDAO dao = (BillDAO) ac.getBean(BillDAO.class);
-		List<BillPo> pos = dao.findAll(BillPo.class);
+		IReportComnent dao = (IReportComnent) ac.getBean(IReportComnent.class);
+		QueryBillReporDTO dto = new QueryBillReporDTO();
 
-		HashMap parameters = new HashMap();
-		parameters.put("source", pos);
+		final Map<String, Object> title = new HashMap<String, Object>();
 
-		File f = new File("/POS/tmp");
-		System.out.print(f.getAbsolutePath());
+		final List<Map<String, String>> contentData = new ArrayList<Map<String, String>>();
+
+		title.put("title", "XXX");
+		dto.set(Report.R001, title, contentData);
+		dao.report(dto);
 
 	}
 }
