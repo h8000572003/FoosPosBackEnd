@@ -3,6 +3,12 @@ package com.food.pos.contract;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * setting.properties 檔案系統位置
+ * 
+ * @author 1109001
+ *
+ */
 @Component
 public class PosSystemConfig {
 	@Value("${system.id}")
