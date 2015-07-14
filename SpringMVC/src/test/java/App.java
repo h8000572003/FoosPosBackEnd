@@ -23,6 +23,10 @@ public class App {
 
 		title.put("title", "XXX");
 		dto.set(Report.R001, title, contentData);
+
+		final Map<String, String> sub = new HashMap<String, String>();
+		sub.put("test1", "v1");
+		contentData.add(sub);
 		dao.report(dto);
 
 	}

@@ -28,6 +28,7 @@ public class IReportComnentImpl implements IReportComnent {
 
 	private static final String REPORT = "report";
 	private static final String _JASPER = ".jasper";
+	private static final String _PDF = ".pdf";
 
 	/**
  * 
@@ -39,20 +40,17 @@ public class IReportComnentImpl implements IReportComnent {
 
 		String outPutPath = "";
 		try {
-			final String reportPath = posSystemConfig.getConfig()
-					+ File.separator + REPORT + File.separator
-					+ iReprtParmeter.getReportID() + _JASPER;
+			final String reportPath = this.posSystemConfig.getConfig() + REPORT
+					+ File.separator + iReprtParmeter.getReportID() + _JASPER;
 
-			File f = new File(reportPath);
-			LOG.info("input reportPath:" + f.getAbsolutePath());
+			LOG.info("input reportPath:" + reportPath);
 
 			final JasperPrint jasperPrint = JasperFillManager.fillReport(
 					reportPath, iReprtParmeter.getTitle(),
 					beanCollectionDataSource);
 
-			outPutPath = File.separator + posSystemConfig.getShare()
-					+ File.separator + AeUtils.getNowDate()
-					+ AeUtils.getNowTime() + ".pdf";
+			outPutPath = this.posSystemConfig.getTemp()
+					+ iReprtParmeter.getReportID() + _PDF;
 
 			LOG.info("output path:" + outPutPath);
 			this.downLoadPDF(jasperPrint, outPutPath);
@@ -68,6 +66,7 @@ public class IReportComnentImpl implements IReportComnent {
 		try {
 			FileOutputStream fos = new FileOutputStream(generateFilePath);
 			JasperExportManager.exportReportToPdfStream(print, fos);
+
 			fos.flush();
 			fos.close();
 		} catch (Exception e) {
