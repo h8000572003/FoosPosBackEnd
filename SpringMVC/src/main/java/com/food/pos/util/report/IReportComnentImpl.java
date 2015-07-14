@@ -26,7 +26,6 @@ public class IReportComnentImpl implements IReportComnent {
 	@Autowired
 	private transient PosSystemConfig posSystemConfig;
 
-	private static final String REPORT = "report";
 	private static final String _JASPER = ".jasper";
 	private static final String _PDF = ".pdf";
 
@@ -37,11 +36,11 @@ public class IReportComnentImpl implements IReportComnent {
 	public String report(IReprtParmeter iReprtParmeter) {
 		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
 				iReprtParmeter.getContentData());
-
+		LOG.debug("report begin");
 		String outPutPath = "";
 		try {
-			final String reportPath = this.posSystemConfig.getConfig() + REPORT
-					+ File.separator + iReprtParmeter.getReportID() + _JASPER;
+			final String reportPath = this.posSystemConfig.getReport()
+					+ iReprtParmeter.getReportID() + _JASPER;
 
 			LOG.info("input reportPath:" + reportPath);
 
@@ -49,16 +48,20 @@ public class IReportComnentImpl implements IReportComnent {
 					reportPath, iReprtParmeter.getTitle(),
 					beanCollectionDataSource);
 
-			outPutPath = this.posSystemConfig.getTemp()
-					+ iReprtParmeter.getReportID() + _PDF;
+			final String path = this.posSystemConfig.getTmpReport()
+					+ AeUtils.getNowYearMon() + "/";
+			new File(path).mkdirs();
+
+			outPutPath = path + iReprtParmeter.getReportID() + "_"
+					+ AeUtils.getTx() + _PDF;
 
 			LOG.info("output path:" + outPutPath);
 			this.downLoadPDF(jasperPrint, outPutPath);
 		} catch (JRException e) {
-			LOG.error("e:" + e);
+			LOG.error("report e:" + e);
 			throw new RuntimeException("產製檔案失敗");
 		}
-
+		LOG.debug("report finish");
 		return outPutPath;
 	}
 

@@ -22,6 +22,16 @@ public class PosSystemConfig {
 
 	@Value("${temp.path}")
 	private String temp;
+	
+	@Value("${share.report.path}")
+	private String report="";
+	
+	@Value("${temp.report.path}")
+	private String tmpReport="";
+
+	public String getReport() {
+		return report;
+	}
 
 	public String getSysyemId() {
 		return SysyemId;
@@ -37,6 +47,10 @@ public class PosSystemConfig {
 
 	public String getTemp() {
 		return temp;
+	}
+
+	public String getTmpReport() {
+		return tmpReport;
 	}
 
 }

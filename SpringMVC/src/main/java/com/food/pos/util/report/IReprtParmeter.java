@@ -24,29 +24,15 @@ public class IReprtParmeter implements ReportParmter {
 
 	public static enum Report {
 
-		R001("month001")
+		R001
 
 		;
 
-		private Report(String path) {
-
-			this.path = path;
-		}
-
-		public String getPath() {
-			return path;
-		}
-
-		public void setPath(String path) {
-			this.path = path;
-		}
-
-		private String path = "";
 	}
 
 	@Override
 	public String getReportID() {
-		return this.report.getPath();
+		return this.report.toString();
 	}
 
 	public Map<String, Object> getTitle() {
