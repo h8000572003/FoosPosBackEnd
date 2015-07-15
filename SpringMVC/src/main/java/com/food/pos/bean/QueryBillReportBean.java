@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.food.pos.contract.AeUtils;
 import com.food.pos.dto.QueryBillReporDTO;
 import com.food.pos.service.QueryBillReportService;
+import com.food.pos.util.report.DownUtil;
 
 @ManagedBean
 @ViewScoped
@@ -57,17 +58,8 @@ public class QueryBillReportBean implements Serializable {
 
 	public void doQuery() {
 
-		try {
-			File fo = new File("/POS/tmp/xxx.txt");
-			LOG.info(fo.getAbsolutePath());
-			
-			InputStream io = new FileInputStream(fo);
-			file = new DefaultStreamedContent(io, "java/*", "xxx.txt");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		service.query(dto);
+		this.file = DownUtil.getStreamedContent(dto.getPath(), "my.pdf");
 	}
 
 	public String queryMonth() {

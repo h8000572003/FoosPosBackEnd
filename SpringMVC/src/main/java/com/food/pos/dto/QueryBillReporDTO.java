@@ -14,6 +14,9 @@ public class QueryBillReporDTO extends IReprtParmeter implements Serializable {
 	private int totalMoney = 0;
 	private String begin = "";
 	private String endDate = "";
+	private String path = "";
+	
+	
 
 	private QueryBillReporDTOResutDTO queryBillReporDTOResutDTO = new QueryBillReporDTOResutDTO();
 
@@ -40,6 +43,38 @@ public class QueryBillReporDTO extends IReprtParmeter implements Serializable {
 	public void setQueryBillReporDTOResutDTO(
 			QueryBillReporDTOResutDTO queryBillReporDTOResutDTO) {
 		this.queryBillReporDTOResutDTO = queryBillReporDTOResutDTO;
+	}
+
+	public int getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(int totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+	public String getBegin() {
+		return begin;
+	}
+
+	public void setBegin(String begin) {
+		this.begin = begin;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }

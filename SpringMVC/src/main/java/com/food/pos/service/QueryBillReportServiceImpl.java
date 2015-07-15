@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.food.pos.dao.BillDAO;
 import com.food.pos.domain.BillPo;
 import com.food.pos.dto.QueryBillReporDTO;
+import com.food.pos.util.report.DownUtil;
 import com.food.pos.util.report.IReportComnent;
 import com.food.pos.util.report.IReprtParmeter.Report;
 
@@ -26,6 +27,8 @@ public class QueryBillReportServiceImpl implements QueryBillReportService {
 
 	@Override
 	public void query(QueryBillReporDTO dto) {
+
+		dto.setPath(null);
 		List<BillPo> bills = this.billDAO.findBillByLikeDate(dto.getYyyy()
 				+ dto.getMonth());
 
@@ -36,7 +39,9 @@ public class QueryBillReportServiceImpl implements QueryBillReportService {
 		title.put("title", "XXX");
 		dto.set(Report.R001, title, contentData);
 
-		this.mIReportComnent.report(dto);
+		final String url = this.mIReportComnent.report(dto);
+		dto.setPath(url);
+	
 
 	}
 }

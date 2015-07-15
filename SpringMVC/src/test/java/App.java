@@ -21,6 +21,9 @@ public class App {
 
 	public static void main(String[] args) {
 		File fo = new File("/POS/tmp/xxx.txt");
-		LOG.info(fo.getAbsolutePath());
+
+		LOG.info("AbsolutePath={}", fo.getAbsolutePath());
+
+		LOG.info("info={}", fo.getPath());
 	}
 }
