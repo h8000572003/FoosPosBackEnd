@@ -4,7 +4,6 @@
 
 package com.food.pos.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,8 @@ import org.springframework.stereotype.Service;
 import com.food.pos.dao.SampleDAO;
 import com.food.pos.domain.SamplePO;
 import com.food.pos.dto.SampleDTO;
-import com.food.pos.job.SampleJob;
+import com.food.pos.util.job.JobServiceAPI;
+import com.food.pos.util.job.SampleJob;
 
 /**
  * 
@@ -51,7 +51,7 @@ public class SampleServiceImpl implements SampleService {
 
 	@Override
 	public final void executeJob(SampleDTO sampleDto) {
-		this.job.setDto(sampleDto);
+//		this.job.setDto(sampleDto);
 
 		LOG.debug("Running Job start");
 		this.jobService.addOneJob(this.job);

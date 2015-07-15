@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012.資拓宏宇科技. All right reserved.
  */
-package com.food.pos.util;
+package com.food.pos.util.job;
 
 import java.net.UnknownHostException;
 import java.util.UUID;

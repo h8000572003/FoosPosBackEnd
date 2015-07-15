@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.food.pos.job.AbstractTasklet;
+import com.food.pos.util.job.AbstractTasklet;
 
 @Component
 public class BillJob extends AbstractTasklet {

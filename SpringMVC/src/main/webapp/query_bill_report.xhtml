@@ -10,6 +10,7 @@
 <ui:composition template="pages/default.xhtml">
 
 	<ui:define name="content">
+
 		<h:form id="form">
 
 
@@ -26,7 +27,7 @@
 						<f:facet name="prepend">
 							<h:outputText value="年" converter="#{timeConverter}">
 
-								
+
 							</h:outputText>
 						</f:facet>
 					</b:inputText>
@@ -62,18 +63,39 @@
 				<br></br>
 
 
-				<b:commandButton value="查詢"
-					action="#{queryBillReportBean.queryMonth}"></b:commandButton>
 
-
+				<p:commandButton value="Download" ajax="false"
+					actionListener="#{queryBillReportBean.doQuery}"
+					onclick="PrimeFaces.monitorDownload(start, stop);"
+					icon="ui-icon-arrowthick-1-s">
+					<p:fileDownload value="#{queryBillReportBean.file}" />
+				</p:commandButton>
 
 
 
 			</b:well>
 
+			<p:dialog modal="true" widgetVar="statusDialog" header="Status"
+				draggable="false" closable="false" resizable="false">
+				
+					下載中..
+				
+			</p:dialog>
+
+
 
 
 		</h:form>
+
+		<script type="text/javascript">
+			function start() {
+				PF('statusDialog').show();
+			}
+
+			function stop() {
+				PF('statusDialog').hide();
+			}
+		</script>
 	</ui:define>
 
 

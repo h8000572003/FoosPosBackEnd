@@ -19,14 +19,14 @@
 		<property name="locations">
 			<list>
 				<value>/WEB-INF/config/setting.properties</value>
-				
+
 			</list>
 		</property>
 	</bean>
 
-
+<import resource="quartz_jobs.xml" />
 	<mvc:annotation-driven />
-	<import resource="quartz_jobs.xml" />
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
@@ -71,5 +71,5 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
-
+	
 </beans>

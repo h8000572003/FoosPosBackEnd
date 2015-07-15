@@ -40,7 +40,7 @@
 
 	<bean id="jobParametersIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
 	
-	<bean id="jobExecutor" class="com.food.pos.job.JobExecutor">		
+	<bean id="jobExecutor" class="com.food.pos.util.job.JobExecutor">		
 		<property name="jobRepository" ref="jobRepository"/>
 		<property name="jobParametersIncrementer" ref="jobParametersIncrementer"/> 
 		<property name="jobParametersValidator" ref="jobParametersValidator"/>		   
