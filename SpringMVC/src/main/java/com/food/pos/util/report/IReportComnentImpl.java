@@ -41,8 +41,8 @@ public class IReportComnentImpl implements IReportComnent {
 		try {
 			final String reportPath = this.posSystemConfig.getReport()
 					+ iReprtParmeter.getReportID() + _JASPER;
-
-			LOG.info("input reportPath:" + reportPath);
+			File f = new File(reportPath);
+			LOG.info("input reportPath:" + f.getAbsolutePath());
 
 			final JasperPrint jasperPrint = JasperFillManager.fillReport(
 					reportPath, iReprtParmeter.getTitle(),
