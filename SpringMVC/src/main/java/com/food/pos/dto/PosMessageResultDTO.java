@@ -2,7 +2,7 @@ package com.food.pos.dto;
 
 import java.io.Serializable;
 
-public class PosMessageResultDTO   implements Serializable{
+public class PosMessageResultDTO implements Serializable {
 	/**
 	 * 
 	 */
@@ -10,11 +10,13 @@ public class PosMessageResultDTO   implements Serializable{
 
 	private Long id;
 
-	private String message="";
+	private String message = "";
 
 	private String createDate = "";
 
 	private String createTime = "";
+
+	private String path = "";
 
 	public Long getId() {
 		return id;
@@ -47,9 +49,13 @@ public class PosMessageResultDTO   implements Serializable{
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	
-	
-	
-	
-	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 }

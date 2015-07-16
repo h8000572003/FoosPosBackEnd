@@ -20,6 +20,8 @@ public class ShowMessageBean implements Serializable {
 	private Logger LOG = LoggerFactory.getLogger(ShowMessageBean.class);
 
 	private ShowMessagDTO dto = new ShowMessagDTO();
+	
+	
 	/**
 	 * 
 	 */

@@ -34,6 +34,7 @@ public class ShowMessageServiceImpl implements ShowMessageService {
 			showMessagResultDTO.setCreateTime(message.getCreateTime());
 			showMessagResultDTO.setMessage(message.getMessage());
 			showMessagResultDTO.setId(message.getId());
+			showMessagResultDTO.setPath(message.getMessagePath());
 			dto.getMessages().add(showMessagResultDTO);
 		}
 

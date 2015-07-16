@@ -51,6 +51,7 @@ public class PosMessageServiceImpl implements PosMessageService {
 		message.setCreateDate(dto.getAddPostMessage().getCreateDate());
 		message.setCreateTime(dto.getAddPostMessage().getCreateTime());
 		message.setMessage(dto.getAddPostMessage().getMessage());
+		message.setMessagePath(dto.getAddPostMessage().getPath());
 
 		this.messageDAO.create(message);
 		this.loadMessage(dto);
@@ -68,9 +69,9 @@ public class PosMessageServiceImpl implements PosMessageService {
 		message.setCreateTime(dto.getSelectPostMessage().getCreateTime());
 		message.setMessage(dto.getSelectPostMessage().getMessage());
 		message.setId(dto.getSelectPostMessage().getId());
+		message.setMessagePath(dto.getSelectPostMessage().getPath());
 		this.messageDAO.update(message);
 		this.loadMessage(dto);
-		
 
 		dto.setSelectPostMessage(new PosMessageResultDTO());
 	}
@@ -82,7 +83,7 @@ public class PosMessageServiceImpl implements PosMessageService {
 		message.setCreateTime(dto.getSelectPostMessage().getCreateTime());
 		message.setMessage(dto.getSelectPostMessage().getMessage());
 		message.setId(dto.getSelectPostMessage().getId());
-		
+
 		this.messageDAO.delete(message);
 		this.loadMessage(dto);
 		dto.setSelectPostMessage(new PosMessageResultDTO());

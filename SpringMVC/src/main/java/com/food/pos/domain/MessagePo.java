@@ -24,6 +24,9 @@ public class MessagePo {
 	@Column(name = "createTime")
 	private String createTime = "";
 
+	@Column(name = "messagePath")
+	private String messagePath = "";
+
 	public String getCreateDate() {
 		return createDate;
 	}
@@ -54,6 +57,14 @@ public class MessagePo {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getMessagePath() {
+		return messagePath;
+	}
+
+	public void setMessagePath(String messagePath) {
+		this.messagePath = messagePath;
 	}
 
 }
