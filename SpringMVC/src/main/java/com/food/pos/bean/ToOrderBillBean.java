@@ -12,12 +12,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.food.pos.dto.ToOrderBillDTO;
 import com.food.pos.dto.ToOrderFoodDTO;
 import com.food.pos.dto.ToOrderFoodItemDTO;
 import com.food.pos.service.ToOrderBillService;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @ManagedBean
 @ViewScoped
@@ -64,8 +66,9 @@ public class ToOrderBillBean implements Serializable {
 		this.service.sendBill(dto);
 		this.dto = new ToOrderBillDTO();
 		this.service.readData(dto);
-		
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "新增成功", null);
+
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"新增成功", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return null;
 	}
@@ -76,9 +79,71 @@ public class ToOrderBillBean implements Serializable {
 
 	}
 
+	/**
+	 * 小鍵盤輸入
+	 * 
+	 * @author 1109001
+	 *
+	 */
+	enum Key_CODE {
+		K_1(1), //
+		K_2(2), //
+		K_3(3), //
+		K_4(4), //
+		K_5(5), //
+		K_6(6), //
+		K_7(7), //
+		K_8(8), //
+		K_9(9), //
+		K_0(0) {
+			@Override
+			public String changeValue(String orgValue) {
+				if (StringUtils.isBlank(orgValue)) {
+					return orgValue;
+				}
+				return super.changeValue(orgValue);
+			}
+		},
+		K_CLEAN(-1) {
+			@Override
+			public String changeValue(String orgValue) {
+				return StringUtils.EMPTY;
+			}
+		},
+
+		K_BACK(-2) {
+			@Override
+			public String changeValue(String orgValue) {
+				if (StringUtils.isBlank(orgValue)) {
+					return StringUtils.EMPTY;
+				} else {
+					return orgValue.substring(0, orgValue.length() - 1);
+				}
+			}
+		},
+		;
+		private int value;
+
+		private Key_CODE(int value) {
+			this.value = value;
+		}
+
+		public String changeValue(String orgValue) {
+			return orgValue + value;
+
+		}
+	}
+
+	public void changeNum(String value) {
+		Key_CODE key = Key_CODE.valueOf(value);
+
+		dto.setNumber(key.changeValue(dto.getNumber()));
+	}
+
 	public void toAdd() {
 
 		ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
+
 		foodItem.setName(dto.getName());
 		foodItem.setDollar(Integer.parseInt(dto.getDollar()));
 		foodItem.setNumber(dto.getNumber());
@@ -87,8 +152,7 @@ public class ToOrderBillBean implements Serializable {
 		if (dto.getToOrderFoods().contains(foodItem)) {
 			foodItem = dto.getToOrderFoods().get(
 					dto.getToOrderFoods().indexOf(foodItem));
-			foodItem.setNumber(Integer.parseInt(foodItem.getNumber())
-					+ Integer.parseInt(dto.getNumber()) + "");
+			foodItem.setNumber(dto.getNumber());
 		} else {
 			dto.getToOrderFoods().add(foodItem);
 		}

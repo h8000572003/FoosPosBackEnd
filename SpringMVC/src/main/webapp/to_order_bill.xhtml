@@ -9,59 +9,61 @@
 
 <ui:composition template="pages/default.xhtml">
 
-
-
+	<p:remoteCommand update="myForm" name="chagneValueEvent"></p:remoteCommand>
 	<ui:define name="content">
-		<h:form>
+		<h:form id="myForm">
 
-			<p:remoteCommand update="orderPanel" name="chagneValueEvent"></p:remoteCommand>
+
 
 
 			<b:well id="orderPanel" title="點菜" collapsible="false">
 				<h1>點菜</h1>
 
 
-				<h:panelGrid columns="2"  cellpadding="5">
-					
-						<h:outputText value="序號：">
-						</h:outputText>
-						<b:inputText value="#{toOrderBillBean.dto.seqNo}" disabled="true"></b:inputText>
+
+
+				<h:outputText value="序號：">
+				</h:outputText>
+				<b:inputText value="#{toOrderBillBean.dto.seqNo}" disabled="true"></b:inputText>
 
 
 
-						<h:outputText value="座位："></h:outputText>
-						<p:selectOneMenu value="#{toOrderBillBean.dto.seat}"  
-							onchange="chagneValueEvent();" id="selectSeat">
-							<f:selectItem itemLabel="未設定" itemValue="" />
-							<f:selectItem itemLabel="1" itemValue="1" />
-							<f:selectItem itemLabel="2" itemValue="2" />
-							<f:selectItem itemLabel="井邊" itemValue="井邊" />
-							<f:selectItem itemLabel="井中" itemValue="井中" />
-							<f:selectItem itemLabel="井大" itemValue="井大" />
-							<f:selectItem itemLabel="井電" itemValue="井電" />
-							<f:selectItem itemLabel="o大" itemValue="o大" />
-							<f:selectItem itemLabel="o中" itemValue="o中" />
-							<f:selectItem itemLabel="o電" itemValue="o電" />
+				<h:outputText value="座位："></h:outputText>
+				<p:selectOneMenu value="#{toOrderBillBean.dto.seat}"
+					onchange="chagneValueEvent();" id="selectSeat">
+					<f:selectItem itemLabel="未設定" itemValue="" />
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+					<f:selectItem itemLabel="井邊" itemValue="井邊" />
+					<f:selectItem itemLabel="井中" itemValue="井中" />
+					<f:selectItem itemLabel="井大" itemValue="井大" />
+					<f:selectItem itemLabel="井電" itemValue="井電" />
+					<f:selectItem itemLabel="o大" itemValue="o大" />
+					<f:selectItem itemLabel="o中" itemValue="o中" />
+					<f:selectItem itemLabel="o電" itemValue="o電" />
 
-						</p:selectOneMenu>
+				</p:selectOneMenu>
 
-						<h:outputText value="內用外帶："></h:outputText>
-						<p:selectOneMenu value="#{toOrderBillBean.dto.outOrIn}" 
-							onchange="chagneValueEvent();" id="selectOutOrIn">
-							<f:selectItem itemLabel="未設定" itemValue="" />
-							<f:selectItem itemLabel="內用" itemValue="I" />
-							<f:selectItem itemLabel="外帶" itemValue="O" />
+				<h:outputText value="內用外帶："></h:outputText>
+				<p:selectOneMenu value="#{toOrderBillBean.dto.outOrIn}"
+					onchange="chagneValueEvent();" id="selectOutOrIn">
+					<f:selectItem itemLabel="未設定" itemValue="" />
+					<f:selectItem itemLabel="內用" itemValue="I" />
+					<f:selectItem itemLabel="外帶" itemValue="O" />
 
 
 
-						</p:selectOneMenu>
+				</p:selectOneMenu>
 
-					
-				</h:panelGrid>
+
+				<!-- 					<p:commandButton value="test" -->
+				<!-- 						oncomplete="PF('keyBoardDialog').show()"></p:commandButton> -->
+
 
 
 
 				<b:panelGrid colSpans="12">
+
 					<p:selectOneButton value="#{toOrderBillBean.dto.name}">
 
 
@@ -77,44 +79,38 @@
 
 
 
-					<b:selectOneMenu value="#{toOrderBillBean.dto.number}">
 
 
-						<f:selectItem itemLabel="1" itemValue="1" />
-						<f:selectItem itemLabel="2" itemValue="2" />
-						<f:selectItem itemLabel="3" itemValue="3" />
-						<f:selectItem itemLabel="4" itemValue="4" />
-						<f:selectItem itemLabel="5" itemValue="5" />
-						<f:selectItem itemLabel="6" itemValue="6" />
-						<f:selectItem itemLabel="7" itemValue="7" />
-						<f:selectItem itemLabel="8" itemValue="8" />
-						<f:selectItem itemLabel="9" itemValue="9" />
-						<f:selectItem itemLabel="10" itemValue="10" />
 
+					<b:inputText value="#{toOrderBillBean.dto.number}"></b:inputText>
 
-						<f:selectItem itemLabel="11" itemValue="11" />
-						<f:selectItem itemLabel="12" itemValue="12" />
-						<f:selectItem itemLabel="13" itemValue="13" />
-						<f:selectItem itemLabel="14" itemValue="14" />
-						<f:selectItem itemLabel="15" itemValue="15" />
-						<f:selectItem itemLabel="16" itemValue="16" />
-						<f:selectItem itemLabel="17" itemValue="17" />
-						<f:selectItem itemLabel="18" itemValue="18" />
-						<f:selectItem itemLabel="19" itemValue="19" />
-						<f:selectItem itemLabel="20" itemValue="20" />
-						<f:facet name="prepend">
+					<h:panelGrid columns="3">
 
-							<h:outputText value="#{toOrderBillBean.dto.name}" />
-							<h:outputText value="$#{toOrderBillBean.dto.dollar}" />
-
-
-						</f:facet>
-
-						<f:facet name="append">
-							<h:outputText value="數量" />
-						</f:facet>
-
-					</b:selectOneMenu>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_1')}"
+							update="@form" value="1"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_2')}"
+							update="@form"  value="2"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_3')}"
+							update="@form" value="3"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_4')}"
+							update="@form" value="4"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_5')}"
+							update="@form" value="5"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_6')}"
+							update="@form" value="6"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_7')}"
+							update="@form" value="7"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_8')}"
+							update="@form" value="8"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_9')}"
+							update="@form" value="9"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_0')}"
+							update="@form" value="0"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_CLEAN')}"
+							update="@form" value="C"></b:commandButton>
+						<b:commandButton ajax="true" size="lg" action="#{toOrderBillBean.changeNum('K_BACK')}"
+							update="@form" value="B"></b:commandButton>
+					</h:panelGrid>
 
 					<p:commandButton value="加入" style="width:100%" update="@form"
 						actionListener="#{toOrderBillBean.toAdd}"></p:commandButton>
@@ -146,7 +142,7 @@
 
 
 
-				<p:commandButton value="買單" update="@form"
+				<p:commandButton value="買單" update="@form" ajax="true"
 					actionListener="#{toOrderBillBean.count}"
 					oncomplete="PF('buyDialog').show()" title="View">
 
@@ -198,6 +194,24 @@
 
 						</b:well>
 					</p:outputPanel>
+				</p:dialog>
+
+				<p:dialog header="輸入數量" widgetVar="keyBoardDialog" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<b:panelGrid colSpans="4,4,4">
+						<p:commandButton ajax="true" value="1"></p:commandButton>
+						<p:button value="2"></p:button>
+						<p:button value="3"></p:button>
+						<p:button value="4"></p:button>
+						<p:button value="5"></p:button>
+						<p:button value="6"></p:button>
+						<p:button value="7"></p:button>
+						<p:button value="8"></p:button>
+						<p:button value="9"></p:button>
+						<p:button value="10"></p:button>
+					</b:panelGrid>
+
+
 				</p:dialog>
 
 			</b:well>
