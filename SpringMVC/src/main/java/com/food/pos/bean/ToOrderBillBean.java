@@ -20,6 +20,7 @@ import com.food.pos.dto.ToOrderFoodDTO;
 import com.food.pos.dto.ToOrderFoodItemDTO;
 import com.food.pos.service.ToOrderBillService;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+import com.sun.star.uno.RuntimeException;
 
 @ManagedBean
 @ViewScoped
@@ -114,11 +115,13 @@ public class ToOrderBillBean implements Serializable {
 		K_BACK(-2) {
 			@Override
 			public String changeValue(String orgValue) {
+				
 				if (StringUtils.isBlank(orgValue)) {
 					return StringUtils.EMPTY;
 				} else {
 					return orgValue.substring(0, orgValue.length() - 1);
 				}
+				
 			}
 		},
 		;
@@ -138,6 +141,7 @@ public class ToOrderBillBean implements Serializable {
 		Key_CODE key = Key_CODE.valueOf(value);
 
 		dto.setNumber(key.changeValue(dto.getNumber()));
+		throw new RuntimeException("test");
 	}
 
 	public void toAdd() {

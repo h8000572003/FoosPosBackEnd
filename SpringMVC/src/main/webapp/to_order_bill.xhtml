@@ -160,7 +160,10 @@
 					</ui:repeat>
 				</b:well>
 				<p />
-				<p:commandButton value="test" update="@form" ajax="true" oncomplete="PF('keyBoardDialog').show()"></p:commandButton>
+				<p:commandButton value="test" update="@form" ajax="true"
+					oncomplete="PF('keyBoardDialog').show()"></p:commandButton>
+				<a onclick="keyBoardDialog.show();">open</a>
+				<button onclick="keyBoardDialog.show();" type="button">Click Me!</button>
 
 
 				<p:commandButton value="買單" update="@form" ajax="true"
@@ -222,14 +225,14 @@
 					<b:buttonGroup size="lg">
 
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_1')}" update="@form"
-							value="1"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_1')}"
+							update="@form" value="1"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_2')}" update="@form"
-							value="2"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_2')}"
+							update="@form" value="2"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_3')}" update="@form"
-							value="3"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_3')}"
+							update="@form" value="3"></b:commandButton>
 
 					</b:buttonGroup>
 					<br />
@@ -237,39 +240,39 @@
 
 
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_4')}" update="@form"
-							value="4"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_4')}"
+							update="@form" value="4"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_5')}" update="@form"
-							value="5"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_5')}"
+							update="@form" value="5"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_6')}" update="@form"
-							value="6"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_6')}"
+							update="@form" value="6"></b:commandButton>
 
 					</b:buttonGroup>
 					<br />
 					<b:buttonGroup size="lg">
 
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_7')}" update="@form"
-							value="7"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_7')}"
+							update="@form" value="7"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_8')}" update="@form"
-							value="8"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_8')}"
+							update="@form" value="8"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_9')}" update="@form"
-							value="9"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_9')}"
+							update="@form" value="9"></b:commandButton>
 
 					</b:buttonGroup>
 					<br />
 					<b:buttonGroup size="lg">
 
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_0')}" update="@form"
-							value="0"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_0')}"
+							update="@form" value="0"></b:commandButton>
 						<b:commandButton ajax="true" size="lg"
-							actionListener="#{toOrderBillBean.changeNum('K_CLEAN')}" update="@form"
-							value="C"></b:commandButton>
+							actionListener="#{toOrderBillBean.changeNum('K_CLEAN')}"
+							update="@form" value="C"></b:commandButton>
 
 
 					</b:buttonGroup>
