@@ -159,8 +159,8 @@
 						</b:commandButton>
 					</ui:repeat>
 				</b:well>
-				<br></br>
-
+				<p />
+				<p:commandButton value="test" update="@form" ajax="true" oncomplete="PF('keyBoardDialog').show()"></p:commandButton>
 
 
 				<p:commandButton value="買單" update="@form" ajax="true"
@@ -219,19 +219,60 @@
 
 				<p:dialog header="輸入數量" widgetVar="keyBoardDialog" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false">
-					<b:panelGrid colSpans="4,4,4">
-						<p:commandButton ajax="true" value="1"></p:commandButton>
-						<p:button value="2"></p:button>
-						<p:button value="3"></p:button>
-						<p:button value="4"></p:button>
-						<p:button value="5"></p:button>
-						<p:button value="6"></p:button>
-						<p:button value="7"></p:button>
-						<p:button value="8"></p:button>
-						<p:button value="9"></p:button>
-						<p:button value="10"></p:button>
-					</b:panelGrid>
+					<b:buttonGroup size="lg">
 
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_1')}" update="@form"
+							value="1"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_2')}" update="@form"
+							value="2"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_3')}" update="@form"
+							value="3"></b:commandButton>
+
+					</b:buttonGroup>
+					<br />
+					<b:buttonGroup size="lg">
+
+
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_4')}" update="@form"
+							value="4"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_5')}" update="@form"
+							value="5"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_6')}" update="@form"
+							value="6"></b:commandButton>
+
+					</b:buttonGroup>
+					<br />
+					<b:buttonGroup size="lg">
+
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_7')}" update="@form"
+							value="7"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_8')}" update="@form"
+							value="8"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_9')}" update="@form"
+							value="9"></b:commandButton>
+
+					</b:buttonGroup>
+					<br />
+					<b:buttonGroup size="lg">
+
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_0')}" update="@form"
+							value="0"></b:commandButton>
+						<b:commandButton ajax="true" size="lg"
+							actionListener="#{toOrderBillBean.changeNum('K_CLEAN')}" update="@form"
+							value="C"></b:commandButton>
+
+
+					</b:buttonGroup>
 
 				</p:dialog>
 			</b:well>
