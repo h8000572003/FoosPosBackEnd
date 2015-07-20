@@ -15,81 +15,44 @@
 
 
 			<b:well>
-				<h1>查詢歷史菜單</h1>
-
-				<table>
-					<tr>
-
-						<th><p:outputLabel value="查詢年:  " /></th>
-						<td><p:calendar id="mask" value="#{billBean.dto.queryDate}"
-								pattern="yyyy-MM-dd" mask="true">
-
-							</p:calendar></td>
-					</tr>
-				</table>
-
-				<br></br>
-
-
-
-				<p:dataTable var="item" value="#{billBean.dto.bills}">
-
-
-					<p:column headerText="訂單時間">
-						<h:outputText value="#{item.bill.orderTime}"
-							converter="com.food.pos.bean.converter.TimeConverter">
-
-						</h:outputText>
-					</p:column>
-
-					<p:column headerText="收費金額">
-						<h:outputText value="#{item.bill.dollar}" />
-					</p:column>
-
-
-					<p:column style="text-align: center" headerText="檢視">
-						<p:commandButton update="@form"
-							oncomplete="PF('billDialog').show()" icon="ui-icon-search"
-							title="View">
-							<f:setPropertyActionListener value="#{item}"
-								target="#{billBean.dto.selectBill}" />
-						</p:commandButton>
-
-					</p:column>
-
-				</p:dataTable>
-
-
-
-				<p:dialog header="商品明細" widgetVar="billDialog" modal="true"
-					showEffect="fade" hideEffect="fade" resizable="false">
-					<p:outputPanel id="detial" style="text-align:center;">
-
-
-
-						<b:well>
-							<b:row>
 
 
 
 
 
-								<ui:repeat var="item" value="#{billBean.dto.selectBill.meals}">
 
 
-									<b:column span="4">
-										<b:inputText disabled="true"
-											value="#{item.name} x #{item.number} " />
-									</b:column>
+
+				<b:row styleClass="show-grid">
+
+					<ui:repeat var="item" value="#{billBean.dto.bills}">
+
+						<b:column span="4">
+							<b:panel>
+								<p:outputPanel rendered="#{item.bill.outOrIn eq 'O'}">外帶</p:outputPanel>
+								<p:outputPanel rendered="#{item.bill.outOrIn eq 'I'}">內用</p:outputPanel>
+								<b:commandButton look="primary" value="完單"></b:commandButton>
+							${item.bill.useNo} 
+							
+							
+							<br />
+==================<br />
+								<ui:repeat var="subitem" value="#{item.meals}">
+									#{subitem.name} x #{subitem.number}
+									<br />
 								</ui:repeat>
+								==================<p />
+								<font color="red"> $#{item.bill.dollar}</font>
+							</b:panel>
+						</b:column>
+					</ui:repeat>
+				</b:row>
 
-							</b:row>
-						</b:well>
-					</p:outputPanel>
-				</p:dialog>
 
 
-				<b:commandButton value="查詢" action="#{billBean.doQuery}"></b:commandButton>
+
+
+
 			</b:well>
 
 

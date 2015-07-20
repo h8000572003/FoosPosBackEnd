@@ -85,7 +85,7 @@ public class ToOrderBillServiceImpl implements ToOrderBillService {
 		billPo.setOutOrIn(dto.getOutOrIn());
 		billPo.setSeat(dto.getSeat());
 		billPo.setTxId(dto.getTx());
-		billPo.setUseNo("0");
+		billPo.setUseNo(dto.getSeqNo());
 		this.sampleDao.create(billPo);
 		for (ToOrderFoodItemDTO itemFood : dto.getToOrderFoods()) {
 			MealPo mealPo = new MealPo();

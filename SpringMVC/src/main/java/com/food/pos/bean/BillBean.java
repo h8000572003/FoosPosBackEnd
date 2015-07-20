@@ -33,6 +33,7 @@ public class BillBean implements Serializable {
 	public void init() {
 		this.dto = new BillBeanDTO();
 		this.dto.setYyyymmdd(AeUtils.getNowDate());
+		this.doQuery();
 	}
 
 	public BillBeanDTO getDto() {
