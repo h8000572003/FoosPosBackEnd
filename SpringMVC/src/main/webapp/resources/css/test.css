@@ -6,3 +6,11 @@ body {
 #msgs_container {
 	padding-top: 50px;
 }
+
+#myForm {
+	font-size: 14px
+}
+
+.ui-growl {
+	padding-top: 50px;
+}

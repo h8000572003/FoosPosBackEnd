@@ -64,6 +64,20 @@ public class ToOrderBillBean implements Serializable {
 	}
 
 	public String toSend() {
+
+		if (StringUtils.isBlank(dto.getOutOrIn())) {
+			FacesMessage facesMsg = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "請選擇內用或外帶", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}
+
+//		
+//		if (StringUtils.isBlank(dto.getName())) {
+//			FacesMessage facesMsg = new FacesMessage(
+//					FacesMessage.SEVERITY_ERROR, "請選擇商品", null);
+//			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+//		}
+
 		this.service.sendBill(dto);
 		this.dto = new ToOrderBillDTO();
 		this.service.readData(dto);
@@ -115,13 +129,13 @@ public class ToOrderBillBean implements Serializable {
 		K_BACK(-2) {
 			@Override
 			public String changeValue(String orgValue) {
-				
+
 				if (StringUtils.isBlank(orgValue)) {
 					return StringUtils.EMPTY;
 				} else {
 					return orgValue.substring(0, orgValue.length() - 1);
 				}
-				
+
 			}
 		},
 		;
@@ -138,38 +152,47 @@ public class ToOrderBillBean implements Serializable {
 	}
 
 	public void changeNum(String value) {
-		Key_CODE key = Key_CODE.valueOf(value);
+		final Key_CODE key = Key_CODE.valueOf(value);
 
 		dto.setNumber(key.changeValue(dto.getNumber()));
-		throw new RuntimeException("test");
+
+	}
+
+	public void selectFood(ToOrderFoodDTO food) {
+		dto.setName(food.getName());
+		dto.setDollar(food.getDollar() + "");
 	}
 
 	public void toAdd() {
 
-		ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
-
-		foodItem.setName(dto.getName());
-		foodItem.setDollar(Integer.parseInt(dto.getDollar()));
-		foodItem.setNumber(dto.getNumber());
-		foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(), ","));
-
-		if (dto.getToOrderFoods().contains(foodItem)) {
-			foodItem = dto.getToOrderFoods().get(
-					dto.getToOrderFoods().indexOf(foodItem));
-			foodItem.setNumber(dto.getNumber());
-		} else {
-			dto.getToOrderFoods().add(foodItem);
+		if (StringUtils.isBlank(dto.getName())) {
+			FacesMessage facesMsg = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "請選擇商品", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}
+		if (StringUtils.isBlank(dto.getNumber())) {
+			FacesMessage facesMsg = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "請輸入數量", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}else{
+			ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
 
-	}
+			foodItem.setName(dto.getName());
+			foodItem.setDollar(Integer.parseInt(dto.getDollar()));
+			foodItem.setNumber(dto.getNumber());
+			foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(), ","));
 
-	public String changeValue() {
-		for (ToOrderFoodDTO food : dto.getFoods()) {
-			if (StringUtils.equals(food.getName(), dto.getName())) {
-				dto.setDollar(food.getDollar() + "");
+			if (dto.getToOrderFoods().contains(foodItem)) {
+				foodItem = dto.getToOrderFoods().get(
+						dto.getToOrderFoods().indexOf(foodItem));
+				foodItem.setNumber(dto.getNumber());
+			} else {
+				dto.getToOrderFoods().add(foodItem);
 			}
 		}
-		return "";
+
+		
+
 	}
 
 	public void count() {
