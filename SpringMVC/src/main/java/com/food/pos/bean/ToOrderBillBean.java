@@ -71,26 +71,21 @@ public class ToOrderBillBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}
 
-//		
-//		if (StringUtils.isBlank(dto.getName())) {
-//			FacesMessage facesMsg = new FacesMessage(
-//					FacesMessage.SEVERITY_ERROR, "請選擇商品", null);
-//			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-//		}
+		else {
+			this.service.sendBill(dto);
+			this.dto = new ToOrderBillDTO();
+			this.service.readData(dto);
 
-		this.service.sendBill(dto);
-		this.dto = new ToOrderBillDTO();
-		this.service.readData(dto);
+			FacesMessage facesMsg = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "新增成功", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}
 
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"新增成功", null);
-		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		return null;
 	}
 
-	public String remove(ToOrderFoodItemDTO select) {
+	public void remove(ToOrderFoodItemDTO select) {
 		dto.getToOrderFoods().remove(select);
-		return null;
 
 	}
 
@@ -174,13 +169,14 @@ public class ToOrderBillBean implements Serializable {
 			FacesMessage facesMsg = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "請輸入數量", null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-		}else{
+		} else {
 			ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
 
 			foodItem.setName(dto.getName());
 			foodItem.setDollar(Integer.parseInt(dto.getDollar()));
 			foodItem.setNumber(dto.getNumber());
-			foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(), ","));
+			foodItem.setSpecailize(StringUtils.join(dto.getFeatureStringList(),
+					","));
 
 			if (dto.getToOrderFoods().contains(foodItem)) {
 				foodItem = dto.getToOrderFoods().get(
@@ -190,8 +186,6 @@ public class ToOrderBillBean implements Serializable {
 				dto.getToOrderFoods().add(foodItem);
 			}
 		}
-
-		
 
 	}
 

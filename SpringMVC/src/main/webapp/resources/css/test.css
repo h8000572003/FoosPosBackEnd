@@ -14,3 +14,6 @@ body {
 .ui-growl {
 	padding-top: 50px;
 }
+.panel-default {
+    border-color: rgb(99, 40, 40);
+}

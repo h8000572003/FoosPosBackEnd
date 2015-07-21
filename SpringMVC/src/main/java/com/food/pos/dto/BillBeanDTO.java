@@ -16,6 +16,9 @@ public class BillBeanDTO implements Serializable {
 
 	private List<Bill> bills = new ArrayList<Bill>();
 
+	private Bill inBill;
+	private Bill outBill;
+
 	private Date queryDate = new Date();
 
 	private Bill selectBill = new Bill();
@@ -51,7 +54,22 @@ public class BillBeanDTO implements Serializable {
 	public void setSelectBill(Bill selectBill) {
 		this.selectBill = selectBill;
 	}
-	
-	
 
+	public Bill getInBill() {
+		return inBill;
+	}
+
+	public void setInBill(Bill inBill) {
+		this.inBill = inBill;
+	}
+
+	public Bill getOutBill() {
+		return outBill;
+	}
+
+	public void setOutBill(Bill outBill) {
+		this.outBill = outBill;
+	}
+
+	
 }

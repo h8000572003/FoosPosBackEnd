@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
 @Entity
 @Table(name = "Meal")
 public class MealPo {
@@ -29,7 +31,7 @@ public class MealPo {
 
 	@Column(name = "number")
 	private String number;
-	
+
 	@Column(name = "useNumber")
 	private String useNumber;
 
@@ -65,8 +67,6 @@ public class MealPo {
 		this.spcialize = spcialize;
 	}
 
-	
-
 	public String getDollar() {
 		return dollar;
 	}
@@ -91,4 +91,25 @@ public class MealPo {
 		this.useNumber = useNumber;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof MealPo) {
+			MealPo po = (MealPo) obj;
+			if (StringUtils.equals(po.getName() + po.getSpcialize(), getName()
+					+ getSpcialize())) {
+				return true;
+
+			} else {
+				return false;
+			}
+		}
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
 }
