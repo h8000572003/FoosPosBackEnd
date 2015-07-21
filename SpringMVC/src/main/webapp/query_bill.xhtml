@@ -22,7 +22,7 @@
 
 				<b:row styleClass="show-grid">
 					<b:column span="2">
-						<b:panel style="min-height:300px;border-color: rgb(99, 40, 40); ">
+						<b:panel style="height:300px;border-color: rgb(99, 40, 40); ">
 							<h4>
 								<strong>內用</strong>
 							</h4>
@@ -64,7 +64,7 @@
 
 						<b:column span="2">
 							<b:panel rendered="#{item.bill.outOrIn eq 'I' }"
-								style="min-height:300px;border-color: red; ">
+								style="height:300px;border-color: red; ">
 								<b:commandButton look="primary" value="完單"></b:commandButton>
 
 								<br />
@@ -87,7 +87,7 @@
 								<font color="red"> $#{item.bill.dollar}</font>
 							</b:panel>
 							<b:panel rendered="#{item.bill.outOrIn eq 'O'}"
-								style="min-height:300px;">
+								style="height:300px;">
 								<b:commandButton look="primary" value="完單"></b:commandButton>
 
 								<br />
