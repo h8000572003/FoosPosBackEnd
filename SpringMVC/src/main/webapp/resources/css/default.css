@@ -22,7 +22,6 @@ body {
 .button-success, .button-error, .button-warning, .button-secondary {
 	color: white;
 	border-radius: 4px;
-	
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -33,6 +32,7 @@ body {
 .button-error {
 	background: rgb(202, 60, 60); /* this is a maroon */
 }
+
 .item-title {
 	background: rgb(202, 60, 60); /* this is a maroon */
 }
@@ -44,3 +44,4 @@ body {
 .button-secondary {
 	background: rgb(66, 184, 221); /* this is a light blue */
 }
+
