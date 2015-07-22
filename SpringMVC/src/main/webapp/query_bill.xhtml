@@ -11,35 +11,34 @@
 
 	<ui:define name="content">
 		<h:form id="form">
+
+
+
 			<b:well>
 				<b:row styleClass="show-grid">
 					<b:column span="2">
 						<b:panel style="height:300px;">
-							<h4>
-								<strong>內用(總)</strong>
-							</h4>
-
-							<ui:repeat var="subitem" value="#{billBean.dto.inBill.meals}">
-									#{subitem.name} x #{subitem.number}
-									<br />
-							</ui:repeat>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-info">內用(總)</li>
+								<ui:repeat var="subitem" value="#{billBean.dto.inBill.meals}">
+									<li class="list-group-item">#{subitem.name} x
+										#{subitem.number}</li>
+								</ui:repeat>
+							</ul>
 						</b:panel>
-
-
 					</b:column>
+					
 					<b:column span="2">
 						<b:panel style="height:300px;">
-							<h4>
-								<strong>外帶(總)</strong>
-							</h4>
-
-							<ui:repeat var="subitem" value="#{billBean.dto.outBill.meals}">
-									#{subitem.name} x #{subitem.number}
-									<br />
-							</ui:repeat>
+							<ul class="list-group">
+							  
+								<li class="list-group-item list-group-item-info">外帶(總)</li>
+								<ui:repeat var="subitem" value="#{billBean.dto.outBill.meals}">
+									<li class="list-group-item">#{subitem.name} x
+										#{subitem.number}</li>
+								</ui:repeat>
+							</ul>
 						</b:panel>
-
-
 					</b:column>
 
 					<ui:repeat var="item" value="#{billBean.dto.bills}">
@@ -47,27 +46,33 @@
 						<b:column span="2">
 
 							<b:panel style="height:300px;">
-								<p:commandButton styleClass="btn btn-primary" look="primary"
-									value="$#{item.bill.dollar}"
-									actionListener="#{billBean.selectBill(item)}"
-									oncomplete="PF('buyDialog').show()"></p:commandButton>
+								<ul class="list-group">
+									<li class="list-group-item list-group-item-info">#{item.bill.useNo}<h:outputText
+											value="#{item.bill.outOrIn}">
+											<f:converter
+												converterId="com.food.pos.bean.converter.CodeConverter"></f:converter>
+										</h:outputText>
+										<p:commandButton
+											styleClass="btn btn-info" look="info"
+											value="$#{item.bill.dollar}"
+											actionListener="#{billBean.selectBill(item)}"
+											oncomplete="PF('buyDialog').show()"></p:commandButton></li>
+								
+								
+									<ui:repeat var="subitem" value="#{item.meals}">
+										<li class="list-group-item">#{subitem.name} x
+											#{subitem.number}
+											</li>
+									</ui:repeat>
+								</ul>
+
+
+
+
+
 
 								<br />
-								#{item.bill.useNo}<h:outputText value="#{item.bill.outOrIn}">
-									<f:converter
-										converterId="com.food.pos.bean.converter.CodeConverter"></f:converter>
-								</h:outputText>
 
-
-
-
-
-								<br />
-
-								<ui:repeat var="subitem" value="#{item.meals}">
-									#{subitem.name} x #{subitem.number}
-									<br />
-								</ui:repeat>
 
 							</b:panel>
 						</b:column>

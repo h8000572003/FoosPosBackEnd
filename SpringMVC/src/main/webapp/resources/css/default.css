@@ -33,6 +33,9 @@ body {
 .button-error {
 	background: rgb(202, 60, 60); /* this is a maroon */
 }
+.item-title {
+	background: rgb(202, 60, 60); /* this is a maroon */
+}
 
 .button-warning {
 	background: rgb(223, 117, 20); /* this is an orange */
