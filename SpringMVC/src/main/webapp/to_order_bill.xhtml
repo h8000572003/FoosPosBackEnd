@@ -18,7 +18,7 @@
 
 
 			<b:well id="orderPanel" title="點菜" collapsible="false">
-
+				
 
 				<b:row styleClass="show-grid">
 					<b:column span="4">
@@ -63,7 +63,7 @@
 					<ui:repeat var="item" value="#{toOrderBillBean.dto.toOrderFoods}">
 
 						<p:commandButton actionListener="#{toOrderBillBean.remove(item)}"
-							update="@form" ajax="true"
+							styleClass="btn btn-default" update="@form" ajax="true"
 							value="#{item.name} x #{item.number} ($ #{item.dollar}) #{item.specailize}">
 						</p:commandButton>
 					</ui:repeat>
@@ -77,7 +77,7 @@
 
 				<ui:repeat var="item" value="#{toOrderBillBean.dto.foods}">
 					<p:commandButton value="#{item.name}" update="@form"
-						oncomplete="PF('keyDialog').show()"
+						styleClass="btn btn-default" oncomplete="PF('keyDialog').show()"
 						actionListener="#{toOrderBillBean.selectFood(item)}"></p:commandButton>
 				</ui:repeat>
 
@@ -86,12 +86,13 @@
 
 
 
-				<p:selectManyButton value="#{toOrderBillBean.dto.featureStringList}">
+				<p:selectManyButton  value="#{toOrderBillBean.dto.featureStringList}">
 
 
 
 					<f:selectItems value="#{toOrderBillBean.dto.features}" var="item"
-						itemLabel="#{item.name}" itemValue="#{item.name}" />
+						 itemLabel="#{item.name}" styleClass="button-secondary btn"
+						itemValue="#{item.name}" />
 
 
 				</p:selectManyButton>
@@ -100,22 +101,24 @@
 				<p />
 
 
-				<p:commandButton value="買單" update="@form" 
+				<p:commandButton value="買單" update="@form"
+					styleClass="button-secondary btn"
+					
 					actionListener="#{toOrderBillBean.count}"
 					oncomplete="PF('buyDialog').show()" title="View">
 
 				</p:commandButton>
 
-
+ 			
 
 				<p:commandButton rendered="#{toOrderBillBean.dto.payied eq 'Y'}"
+					styleClass="btn btn-primary"
 					actionListener="#{toOrderBillBean.toSend}" value="列印與送出"
 					update="@form"></p:commandButton>
 
 
 				<p:dialog header="商品明細" widgetVar="buyDialog" modal="true"
-					width="80%" height="80%" showEffect="fade" hideEffect="fade"
-					resizable="false">
+					showEffect="fade" hideEffect="fade" resizable="false">
 					<p:outputPanel>
 
 						<b:well>
@@ -131,7 +134,7 @@
 
 
 									<b:column span="12">
-										<b:inputText disabled="true"
+										<h:outputText disabled="true" style="font-size: 14px;"
 											value="#{item.name} x #{item.number} ($ #{item.dollar}) #{item.specailize}" />
 									</b:column>
 								</ui:repeat>
@@ -141,7 +144,7 @@
 							<b:panelGrid colSpans="12">
 								<b:buttonToolbar>
 									<p:commandButton immediate="false" value="確定"
-										oncomplete="PF('buyDialog').hide()"  update="@form" 
+										oncomplete="PF('buyDialog').hide()" update="@form"
 										actionListener="#{toOrderBillBean.hasPay}" look="danger"></p:commandButton>
 
 
@@ -180,12 +183,15 @@
 
 
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_1')}" update="keyPanel"
 								value="1"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_2')}" update="keyPanel"
 								value="2"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_3')}" update="keyPanel"
 								value="3"></p:commandButton>
 
@@ -195,12 +201,15 @@
 
 
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_4')}" update="keyPanel"
 								value="4"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_5')}" update="keyPanel"
 								value="5"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_6')}" update="keyPanel"
 								value="6"></p:commandButton>
 
@@ -209,12 +218,15 @@
 						<b:buttonGroup size="lg">
 
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_7')}" update="keyPanel"
 								value="7"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_8')}" update="keyPanel"
 								value="8"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_9')}" update="keyPanel"
 								value="9"></p:commandButton>
 
@@ -223,9 +235,11 @@
 						<b:buttonGroup size="lg">
 
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_0')}" update="keyPanel"
 								value="0"></p:commandButton>
 							<p:commandButton ajax="true" size="lg"
+								styleClass="btn btn-default"
 								action="#{toOrderBillBean.changeNum('K_CLEAN')}"
 								update="keyPanel" value="C"></p:commandButton>
 

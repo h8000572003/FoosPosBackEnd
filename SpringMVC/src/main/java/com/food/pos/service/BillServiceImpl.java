@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.food.pos.contract.AeUtils;
 import com.food.pos.controller.BillCompent;
@@ -78,6 +79,17 @@ public class BillServiceImpl implements BillService {
 
 	private void setInBill(BillBeanDTO dto) {
 		dto.setInBill(this.getTotalBill(IN_EAT, dto.getBills()));
+	}
+
+	@Override
+	@Transactional
+	public void convert2History(BillBeanDTO dto) {
+		final Bill bill = dto.getSelectBill();
+
+		this.billCompent.backupBill(bill);
+		this.query(dto);
+		
+
 	}
 
 }

@@ -1,18 +1,20 @@
 package com.food.pos.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.food.pos.contract.AeUtils;
 import com.food.pos.dao.BillDAO;
+import com.food.pos.dao.HistoryBillDAO;
 import com.food.pos.dao.MealDAO;
-import com.food.pos.dao.SampleDAO;
 import com.food.pos.domain.BillPo;
+import com.food.pos.domain.HistoryBillPo;
 import com.food.pos.domain.MealPo;
 import com.food.pos.json.Bill;
 
@@ -21,6 +23,9 @@ public class BillCompentImpl implements BillCompent {
 
 	@Autowired
 	private BillDAO billDAO;
+
+	@Autowired
+	private transient HistoryBillDAO historyBillDAO;
 
 	@Autowired
 	private MealDAO mealPoDAO;
@@ -171,6 +176,27 @@ public class BillCompentImpl implements BillCompent {
 		for (BillPo bill : bills) {
 			bill.setSeat(value);
 			billDAO.update(bill);
+		}
+
+	}
+
+	@Override
+	public void backupBill(Bill bill) {
+		// TODO Auto-generated method stub
+
+		BillPo billPo = bill.getBill();
+		billDAO.delete(billPo);
+
+		HistoryBillPo po = new HistoryBillPo();
+		try {
+			BeanUtils.copyProperties(po, billPo);
+			historyBillDAO.create(po);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

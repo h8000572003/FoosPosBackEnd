@@ -11,20 +11,12 @@
 
 	<ui:define name="content">
 		<h:form id="form">
-
-
-
 			<b:well>
-
-
-
-
-
 				<b:row styleClass="show-grid">
 					<b:column span="2">
-						<b:panel style="height:300px;border-color: rgb(99, 40, 40); ">
+						<b:panel style="height:300px;">
 							<h4>
-								<strong>內用</strong>
+								<strong>內用(總)</strong>
 							</h4>
 
 							<ui:repeat var="subitem" value="#{billBean.dto.inBill.meals}">
@@ -35,10 +27,10 @@
 
 
 					</b:column>
-						<b:column span="2">
-						<b:panel style="height:300px">
+					<b:column span="2">
+						<b:panel style="height:300px;">
 							<h4>
-								<strong>外帶</strong>
+								<strong>外帶(總)</strong>
 							</h4>
 
 							<ui:repeat var="subitem" value="#{billBean.dto.outBill.meals}">
@@ -49,23 +41,16 @@
 
 
 					</b:column>
-					
-				</b:row>
-
-
-				<b:row styleClass="show-grid">
-
-					
-
-				
-
 
 					<ui:repeat var="item" value="#{billBean.dto.bills}">
 
 						<b:column span="2">
-							<b:panel rendered="#{item.bill.outOrIn eq 'I' }"
-								style="height:300px;border-color: red; ">
-								<b:commandButton look="primary" value="完單"></b:commandButton>
+
+							<b:panel style="height:300px;">
+								<p:commandButton styleClass="btn btn-primary" look="primary"
+									value="$#{item.bill.dollar}"
+									actionListener="#{billBean.selectBill(item)}"
+									oncomplete="PF('buyDialog').show()"></p:commandButton>
 
 								<br />
 								#{item.bill.useNo}<h:outputText value="#{item.bill.outOrIn}">
@@ -83,48 +68,28 @@
 									#{subitem.name} x #{subitem.number}
 									<br />
 								</ui:repeat>
-								<p />
-								<font color="red"> $#{item.bill.dollar}</font>
-							</b:panel>
-							<b:panel rendered="#{item.bill.outOrIn eq 'O'}"
-								style="height:300px;">
-								<b:commandButton look="primary" value="完單"></b:commandButton>
 
-								<br />
-								#{item.bill.useNo}<h:outputText value="#{item.bill.outOrIn}">
-									<f:converter
-										converterId="com.food.pos.bean.converter.CodeConverter"></f:converter>
-								</h:outputText>
-
-
-
-
-
-								<br />
-
-								<ui:repeat var="subitem" value="#{item.meals}">
-									#{subitem.name} x #{subitem.number}
-									<br />
-								</ui:repeat>
-								<p />
-								<font color="red"> $#{item.bill.dollar}</font>
 							</b:panel>
 						</b:column>
 					</ui:repeat>
 				</b:row>
 
-
-
-
-
-
 			</b:well>
 
+			 <p:dialog header="結單" widgetVar="buyDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel>
+					<b:well>
+						<h3>是否結單?</h3>
+						<p:commandButton styleClass="btn btn-primary"
+							actionListener="#{billBean.convert2History}" update="@form"
+							oncomplete="PF('buyDialog').hide();" value="是"></p:commandButton>
+						<p:commandButton styleClass="btn btn-default" update="@form"
+							oncomplete="PF('buyDialog').hide();" value="否"></p:commandButton>
+					</b:well>
+				</p:outputPanel>
+			</p:dialog>
 
-			
-			
-			 
-		
 		</h:form>
 
 	</ui:define>
