@@ -20,7 +20,7 @@ public class BillServiceImplTest extends AbstractMockTesJob {
 		this.service = new BillServiceImpl();
 
 		try {
-			BeanUtils.setProperty(this.service, "billCompent", billCompent);
+//			BeanUtils.setProperty(this.service, "billCompent", billCompent);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -33,8 +33,8 @@ public class BillServiceImplTest extends AbstractMockTesJob {
 	@Test
 	public void testQuery01() {
 
-		BillBeanDTO dto = new BillBeanDTO();
-		this.service.query(dto);
+//		BillBeanDTO dto = new BillBeanDTO();
+//		this.service.query(dto);
 	}
 
 	
