@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.food.pos.AbstractTestJob;
 import com.food.pos.domain.GCMDTO;
 
-public class GCMServiceImplTest extends AbstractTestJob {
+public class GCMServiceImplTest  {
 
 	private GCMService mGCMService;
 
