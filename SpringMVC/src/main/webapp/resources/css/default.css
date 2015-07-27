@@ -25,6 +25,12 @@ body {
 .ui-growl {
 	padding-top: 50px;
 }
+.dialog-30width{
+	width: 30%
+}
+.base-100-width{
+	width: 1000%
+}
 
 .panel-default {
 	border-color: rgb(99, 40, 40);

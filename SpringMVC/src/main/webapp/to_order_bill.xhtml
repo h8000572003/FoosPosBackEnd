@@ -147,12 +147,12 @@
 							<b:panelGrid colSpans="12">
 								<b:buttonToolbar>
 									<p:commandButton immediate="false" value="確定"
-										styleClass="pure-button pure-button-primary"
+										styleClass="pure-button"
 										oncomplete="PF('buyDialog').hide()" update="@form"
 										actionListener="#{toOrderBillBean.hasPay}"></p:commandButton>
 
 
-									<p:commandButton value="取消" oncomplete="PF('buyDialog').hide()"></p:commandButton>
+									<p:commandButton styleClass="pure-button" value="取消" oncomplete="PF('buyDialog').hide()"></p:commandButton>
 
 								</b:buttonToolbar>
 							</b:panelGrid>
@@ -161,21 +161,35 @@
 					</p:outputPanel>
 				</p:dialog>
 
-				<p:dialog header="鍵盤" widgetVar="keyDialog" modal="true" width="50%"
-					showEffect="fade" hideEffect="fade" resizable="false">
-					<p:outputPanel id="keyPanel">
+				<p:dialog header="鍵盤" widgetVar="keyDialog" modal="true"
+					align="center" showEffect="fade" hideEffect="fade"
+					resizable="false">
+					<p:outputPanel style="" id="keyPanel">
 
-						<b:inputText value="#{toOrderBillBean.dto.number}" disabled="true">
-							<f:facet name="prepend">
-
-
-							#{toOrderBillBean.dto.name}$#{toOrderBillBean.dto.dollar}
-
-
-							</f:facet>
+						<h:outputText value="#{toOrderBillBean.dto.name}"></h:outputText>
+						<b:inputText placeholder="購買數量"
+							value="#{toOrderBillBean.dto.number}" styleClass="text_big "
+							disabled="true">
 
 
 						</b:inputText>
+
+						<b:row styleClass="show-grid">
+							<b:column>
+								<p:commandButton ajax="true" styleClass="pure-button"
+									action="#{toOrderBillBean.changeNum('K_CLEAN')}"
+									update="keyPanel" value="C"></p:commandButton>
+								<p:commandButton value="加入" update="@form" ajax="true"
+									styleClass="pure-button "
+									actionListener="#{toOrderBillBean.toAdd}"></p:commandButton>
+							</b:column>
+							
+						</b:row>
+
+
+
+
+
 
 						<b:buttonGroup size="lg">
 

@@ -13,12 +13,15 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.food.pos.dto.ToOrderBillDTO;
 import com.food.pos.dto.ToOrderFoodDTO;
 import com.food.pos.dto.ToOrderFoodItemDTO;
 import com.food.pos.service.ToOrderBillService;
+import com.food.pos.util.FacesContextUtil;
+import com.food.pos.util.POSBuninessException;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.sun.star.uno.RuntimeException;
 
@@ -65,10 +68,13 @@ public class ToOrderBillBean implements Serializable {
 
 	public String toSend() {
 
+		if (CollectionUtils.isEmpty(dto.getToOrderFoods())) {
+			throw new POSBuninessException("至少選擇一項商品");
+
+		}
 		if (StringUtils.isBlank(dto.getOutOrIn())) {
-			FacesMessage facesMsg = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "請選擇內用或外帶", null);
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			throw new POSBuninessException("請選擇內用或外帶");
+
 		}
 
 		else {
@@ -76,9 +82,8 @@ public class ToOrderBillBean implements Serializable {
 			this.dto = new ToOrderBillDTO();
 			this.service.readData(dto);
 
-			FacesMessage facesMsg = new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "新增成功", null);
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			FacesContextUtil.addInfoMessage("新增成功");
+
 		}
 
 		return null;
@@ -161,14 +166,10 @@ public class ToOrderBillBean implements Serializable {
 	public void toAdd() {
 
 		if (StringUtils.isBlank(dto.getName())) {
-			FacesMessage facesMsg = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "請選擇商品", null);
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			throw new POSBuninessException("請選擇商品");
 		}
 		if (StringUtils.isBlank(dto.getNumber())) {
-			FacesMessage facesMsg = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "請輸入數量", null);
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			throw new POSBuninessException("請輸入數量");
 		} else {
 			ToOrderFoodItemDTO foodItem = new ToOrderFoodItemDTO();
 
