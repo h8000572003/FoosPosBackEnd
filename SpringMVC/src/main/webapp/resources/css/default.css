@@ -11,6 +11,17 @@ body {
 	font-size: 14px
 }
 
+.text_mid {
+	font-size: 18px
+}
+
+.text_smal {
+	font-size: 18px
+}
+.text_big {
+	font-size: 26px
+}
+
 .ui-growl {
 	padding-top: 50px;
 }
@@ -44,4 +55,3 @@ body {
 .button-secondary {
 	background: rgb(66, 184, 221); /* this is a light blue */
 }
-
